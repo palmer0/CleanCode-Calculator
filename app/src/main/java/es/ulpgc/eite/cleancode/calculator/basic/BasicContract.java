@@ -25,13 +25,13 @@ public interface BasicContract {
     void init();
 
     void buttonClicked(String button);
-    void dotPressed();
-    String getDisplay();
-    void setDisplay(String d);
-    void backspacePressed();
-    void clearPressed();
-    void digitPressed(String c);
-    void operatorPressed(String c);
+//    void dotPressed();
+//    String getDisplay();
+//    void setDisplay(String d);
+//    void backspacePressed();
+//    void clearPressed();
+//    void digitPressed(String c);
+//    void operatorPressed(String c);
   }
 
   interface Router {

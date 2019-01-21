@@ -6,8 +6,10 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.FragmentActivity;
 
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
+import es.ulpgc.eite.cleancode.calculator.brain.BrainPresenter;
 
-public class BasicPresenter implements BasicContract.Presenter {
+public class BasicPresenter
+    extends BrainPresenter implements BasicContract.Presenter {
 
   public static String TAG = BasicPresenter.class.getSimpleName();
 
@@ -39,12 +41,12 @@ public class BasicPresenter implements BasicContract.Presenter {
     this.router = router;
   }
 
-  private void displayNumber() {
+  protected void displayNumber() {
     view.get().display(getDisplay());
 
   }
 
-  private void displayWarning(String text) {
+  protected void displayWarning(String text) {
     view.get().displayWarning(text);
   }
 
@@ -71,7 +73,6 @@ public class BasicPresenter implements BasicContract.Presenter {
 
     displayNumber();
   }
-
 
   @Override
   public void buttonClicked(String button) {
@@ -112,130 +113,135 @@ public class BasicPresenter implements BasicContract.Presenter {
   }
 
 
-  private void setNumber(String n) {
+  protected void setNumber(String n) {
     viewModel.number = n;
   }
 
-  private void setSavedOperand(String so) {
+  protected void setSavedOperand(String so) {
     viewModel.savedOperand = so;
   }
 
-  private String getNumber() {
+  protected String getNumber() {
     return viewModel.number;
   }
 
-  private String getSavedOperand() {
+  protected String getSavedOperand() {
     return viewModel.savedOperand;
   }
 
-  @Override
-  public void backspacePressed() {
-    setSavedOperand("");
-
-    if (getNumber().length() == 1) {
-      setNumber("0");
-    } else {
-      setNumber(removeRightChar(getNumber()));
-    }
-
-    setDisplay(getNumber());
-    displayNumber();
+  protected void setResult(Integer n) {
+    model.setResult(n);
+    viewModel.result = n;
   }
 
-  @Override
-  public void clearPressed() {
-    model.reset();
-
-    setNumber("0");
-    setSavedOperand("");
-
-    setDisplay(getNumber());
-    displayNumber();
-  }
-
-  @Override
-  public void digitPressed(String c) {
-    Integer maxInt = Integer.MAX_VALUE;
-    int maxDigits = maxInt.toString().length();
-
-    if (getNumber().length() != maxDigits) {
-      if (getNumber().equals("0")) {
-        setNumber(c);
-      } else {
-        setNumber(getNumber() + c);
-
-      }
-    }
-
-    setDisplay(getNumber());
-    displayNumber();
-  }
-
-  @Override
-  public void operatorPressed(String c) {
-
-    Integer n;
-
-    try {
-      //n = convertToInteger(getNumber());
-      n = Integer.parseInt(getNumber());
-    } catch (Exception ex) {
-      displayWarning("Wrong number");
-      //notifyWrongNumberWarning();
-      Integer currentValue = model.getResult();
-      setNumber(currentValue.toString());
-      setDisplay(getNumber());
-      displayNumber();
-      setNumber("0");
-      return;
-    }
-
-
-    if (getSavedOperand().equals("") && model.getResult() == 0) {
-      model.setResult(n);
-      viewModel.result = n;
-
-    } else {
-      try {
-
-        if (getSavedOperand().equals("+")) {
-          model.add(n);
-
-        } else if (getSavedOperand().equals("-")) {
-          model.subtract(n);
-
-        } else if (getSavedOperand().equals("x")) {
-          model.multiply(n);
-
-        } else if (getSavedOperand().equals("/")) {
-          model.divide(n);
-        }
-
-      } catch (Exception ex) {
-        displayWarning("Operation error");
-        //notifyOperationErrorWarning();
-      }
-    }
-
-    Integer currentValue = model.getResult();
-    setNumber(currentValue.toString());
-    setDisplay(getNumber());
-    displayNumber();
-
-    setNumber("0");
-    setSavedOperand(c);
-  }
-
-
-  private String removeRightChar(String text) {
-    int numChars = text.length();
-
-    if (numChars != 0) {
-      return text.substring(0, numChars - 1);
-    } else {
-      return "";
-    }
-  }
+//  @Override
+//  public void backspacePressed() {
+//    setSavedOperand("");
+//
+//    if (getNumber().length() == 1) {
+//      setNumber("0");
+//    } else {
+//      setNumber(removeRightChar(getNumber()));
+//    }
+//
+//    setDisplay(getNumber());
+//    displayNumber();
+//  }
+//
+//  @Override
+//  public void clearPressed() {
+//    model.reset();
+//
+//    setNumber("0");
+//    setSavedOperand("");
+//
+//    setDisplay(getNumber());
+//    displayNumber();
+//  }
+//
+//  @Override
+//  public void digitPressed(String c) {
+//    Integer maxInt = Integer.MAX_VALUE;
+//    int maxDigits = maxInt.toString().length();
+//
+//    if (getNumber().length() != maxDigits) {
+//      if (getNumber().equals("0")) {
+//        setNumber(c);
+//      } else {
+//        setNumber(getNumber() + c);
+//
+//      }
+//    }
+//
+//    setDisplay(getNumber());
+//    displayNumber();
+//  }
+//
+//  @Override
+//  public void operatorPressed(String c) {
+//
+//    Integer n;
+//
+//    try {
+//      //n = convertToInteger(getNumber());
+//      n = Integer.parseInt(getNumber());
+//    } catch (Exception ex) {
+//      displayWarning("Wrong number");
+//      //notifyWrongNumberWarning();
+//      Integer currentValue = model.getResult();
+//      setNumber(currentValue.toString());
+//      setDisplay(getNumber());
+//      displayNumber();
+//      setNumber("0");
+//      return;
+//    }
+//
+//
+//    if (getSavedOperand().equals("") && model.getResult() == 0) {
+//      model.setResult(n);
+//      viewModel.result = n;
+//
+//    } else {
+//      try {
+//
+//        if (getSavedOperand().equals("+")) {
+//          model.add(n);
+//
+//        } else if (getSavedOperand().equals("-")) {
+//          model.subtract(n);
+//
+//        } else if (getSavedOperand().equals("x")) {
+//          model.multiply(n);
+//
+//        } else if (getSavedOperand().equals("/")) {
+//          model.divide(n);
+//        }
+//
+//      } catch (Exception ex) {
+//        displayWarning("Operation error");
+//        //notifyOperationErrorWarning();
+//      }
+//    }
+//
+//    Integer currentValue = model.getResult();
+//    setNumber(currentValue.toString());
+//    setDisplay(getNumber());
+//    displayNumber();
+//
+//    setNumber("0");
+//    setSavedOperand(c);
+//  }
+//
+//
+//  private String removeRightChar(String text) {
+//    int numChars = text.length();
+//
+//    if (numChars != 0) {
+//      return text.substring(0, numChars - 1);
+//    } else {
+//      return "";
+//    }
+//  }
 
 
   /*

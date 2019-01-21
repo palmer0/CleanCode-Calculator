@@ -4,6 +4,7 @@ import java.lang.ref.WeakReference;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainPresenter;
@@ -96,6 +97,31 @@ public class BasicPresenter
     }
   }
 
+  /*
+  @Override
+  public void onButtonClicked(String button) {
+
+    try {
+
+      Integer.parseInt(button);
+      digitPressed(button);
+
+    } catch (NumberFormatException ex) {
+
+      if(button.equals("+") || button.equals("-") || button.equals("=")) {
+        operatorPressed(button);
+      } else if(button.equals("x") || button.equals("/")){
+        operatorPressed(button);
+      } else if(button.equals("Clr")){
+        clearPressed();
+      } else if(button.equals("Del")){
+        backspacePressed();
+      } else if(button.equals(".")){
+        dotPressed();
+      }
+    }
+  }
+  */
 
   @Override
   public void dotPressed() {

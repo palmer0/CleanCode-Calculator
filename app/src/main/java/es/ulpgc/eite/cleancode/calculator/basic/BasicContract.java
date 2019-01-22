@@ -1,6 +1,7 @@
 package es.ulpgc.eite.cleancode.calculator.basic;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import es.ulpgc.eite.cleancode.calculator.app.SharedState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
@@ -25,7 +26,7 @@ public interface BasicContract {
     void init();
     void configChanged();
     void buttonClicked(String button);
-//    void dotPressed();
+//    void undoPressed();
 //    String getDisplay();
 //    void setDisplay(String d);
 //    void backspacePressed();
@@ -36,11 +37,15 @@ public interface BasicContract {
 
   interface Router {
     void navigateToStandardScreen();
-    SharedState getDataFromStandardScreen();
-    void passDataToStandardScreen(BasicViewModel viewModel);
-//    void passDataToStandardScreen(
-////        String display, String number, String savedOperand, Integer result
-////    );
+    void passStateToStandardScreen(SharedState state, List<SharedState> history);
+    SharedState getStateFromStandardScreen();
+    List<SharedState> getHistoryFromStandardScreen();
+    //void passStateToStandardScreen(BasicViewModel viewModel);
 
+    /*
+    void passStateToStandardScreen(
+        String display, String number, String savedOperand, Integer result
+    );
+    */
   }
 }

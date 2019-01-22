@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import es.ulpgc.eite.cleancode.calculator.app.SharedState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
@@ -57,7 +58,12 @@ public class BasicPresenter
   public void init() {
     model.init();
 
-    SharedState state = router.getDataFromStandardScreen();
+    List<SharedState> history = router.getHistoryFromStandardScreen();
+    if(history != null) {
+      commandHistory.addAll(history);
+    }
+
+    SharedState state = router.getStateFromStandardScreen();
     if(state != null) {
       setResult(state.result);
       setSavedOperand(state.savedOperand);
@@ -71,7 +77,7 @@ public class BasicPresenter
   /*
   @Override
   public void init() {
-    SharedState state = router.getDataFromStandardScreen();
+    SharedState state = router.getStateFromStandardScreen();
     if(state != null) {
       viewModel.result = state.result;
       viewModel.savedOperand = state.savedOperand;
@@ -97,12 +103,22 @@ public class BasicPresenter
     viewModel.result = model.getResult();
     //setResult(model.getResult());
 
-    router.passDataToStandardScreen(viewModel);
+    SharedState commandState = new SharedState();
+    commandState.number = viewModel.number;
+    commandState.display = viewModel.display;
+    commandState.savedOperand = viewModel.savedOperand;
+    commandState.result = viewModel.result;
+
+    router.passStateToStandardScreen(commandState, commandHistory);
+    //router.passStateToStandardScreen(viewModel);
     router.navigateToStandardScreen();
   }
 
   @Override
   public void buttonClicked(String button) {
+    if (!button.equals("Undo")) {
+      commandExecuted();
+    }
 
     try {
 
@@ -117,16 +133,57 @@ public class BasicPresenter
         clearPressed();
       } else if (button.equals("Del")) {
         backspacePressed();
-      } else if (button.equals(".")) {
-        dotPressed();
+      } else if (button.equals("Undo")) {
+        undoPressed();
       }
     }
+
+    //commandExecuted();
+  }
+
+  private void commandExecuted() {
+    Log.e(TAG, "commandExecuted()");
+
+    viewModel.result = model.getResult();
+
+    SharedState state = new SharedState();
+    state.number = viewModel.number;
+    state.display = viewModel.display;
+    state.savedOperand = viewModel.savedOperand;
+    state.result = viewModel.result;
+
+    Log.e(TAG, "display: " + viewModel.display);
+    Log.e(TAG, "number: " + viewModel.number);
+    Log.e(TAG, "operand: " + viewModel.savedOperand);
+    Log.e(TAG, "result: " + viewModel.result);
+
+    commandExecuted(state);
   }
 
 
-  @Override
-  public void dotPressed() {
 
+  @Override
+  public void undoPressed() {
+    Log.e(TAG, "undoPressed()");
+
+    SharedState state = commandUndo();
+    if(state == null) {
+      return;
+    }
+
+    /*
+    viewModel.result = state.result;
+    viewModel.savedOperand = state.savedOperand;
+    viewModel.number = state.number;
+    viewModel.display = state.display;
+    */
+
+    setResult(state.result);
+    setSavedOperand(state.savedOperand);
+    setNumber(state.number);
+    setDisplay(state.display);
+
+    displayNumber();
   }
 
   @Override

@@ -14,7 +14,7 @@ public interface BrainContract {
     //void configChanged();
 
     //void buttonClicked(String button);
-    void dotPressed();
+    void undoPressed();
     String getDisplay();
     void setDisplay(String d);
     void backspacePressed();

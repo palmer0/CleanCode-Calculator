@@ -191,10 +191,10 @@
             <Button
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:textColor="@android:color/white"
-                android:text="."
+                android:text="Undo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/buttonDot"
+                android:id="@+id/buttonUndo"
                 android:layout_weight="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 

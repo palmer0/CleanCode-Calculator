@@ -36,7 +36,7 @@ public class StandardActivity extends AppCompatActivity
 
     findViewById(R.id.buttonClear).setOnClickListener(this);
     findViewById(R.id.buttonBackspace).setOnClickListener(this);
-    findViewById(R.id.buttonDot).setOnClickListener(this);
+    findViewById(R.id.buttonUndo).setOnClickListener(this);
     findViewById(R.id.buttonEqual).setOnClickListener(this);
     findViewById(R.id.buttonMinus).setOnClickListener(this);
     findViewById(R.id.buttonPlus).setOnClickListener(this);

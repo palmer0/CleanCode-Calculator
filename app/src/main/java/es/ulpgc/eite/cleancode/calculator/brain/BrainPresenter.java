@@ -1,5 +1,12 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import es.ulpgc.eite.cleancode.calculator.app.SharedState;
+
 public abstract class BrainPresenter implements BrainContract.Presenter {
 
   //  public static String TAG = BrainPresenter.class.getSimpleName();
@@ -10,6 +17,7 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 
   protected BrainContract.Model model;
 
+  protected List<SharedState> commandHistory = new ArrayList<>();
 
   protected abstract void setSavedOperand(String so);
   protected abstract String getNumber();
@@ -108,14 +116,14 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 //      } else if(button.equals("Del")){
 //        backspacePressed();
 //      } else if(button.equals(".")){
-//        dotPressed();
+//        undoPressed();
 //      }
 //    }
 //  }
 
 
 //  @Override
-//  public void dotPressed() {
+//  public void undoPressed() {
 //
 //  }
 //
@@ -147,6 +155,20 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 //  }
 
 
+  protected void commandExecuted(SharedState state) {
+    commandHistory.add(state);
+  }
+
+  protected SharedState commandUndo() {
+    if (commandHistory.isEmpty()) {
+      return null;
+    }
+
+    int index = commandHistory.size() - 1;
+    SharedState state = commandHistory.get(index);
+    commandHistory.remove(index);
+    return state;
+  }
 
   @Override
   public void backspacePressed() {

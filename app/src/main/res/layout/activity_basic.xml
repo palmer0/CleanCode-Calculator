@@ -64,6 +64,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="+"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -108,6 +110,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="-"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -154,6 +158,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="="
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -183,6 +189,8 @@
 
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="."
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -191,6 +199,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="Clr"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -199,6 +209,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="Del"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

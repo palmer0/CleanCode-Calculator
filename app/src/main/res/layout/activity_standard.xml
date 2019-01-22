@@ -64,6 +64,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="+"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -72,6 +74,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="-"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -81,6 +85,8 @@
 
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="Clr"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -127,6 +133,8 @@
 
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="x"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -135,6 +143,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="/"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -144,6 +154,8 @@
 
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="Del"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -192,16 +204,6 @@
 
 
             <Button
-                android:text="."
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/buttonDot"
-                android:layout_weight="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-
-
-
-            <Button
                 android:text="0"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -210,6 +212,19 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
+                android:text="."
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/buttonDot"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@android:color/white"
                 android:text="="
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

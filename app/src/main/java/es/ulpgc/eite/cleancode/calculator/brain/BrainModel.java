@@ -1,10 +1,8 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
-import java.lang.ref.WeakReference;
-
 import android.support.v4.app.FragmentActivity;
 
-import es.ulpgc.eite.cleancode.calculator.basic.BasicContract;
+import java.lang.ref.WeakReference;
 
 public class BrainModel implements BrainContract.Model {
 

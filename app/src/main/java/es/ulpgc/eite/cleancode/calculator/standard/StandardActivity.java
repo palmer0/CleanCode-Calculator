@@ -1,4 +1,4 @@
-package es.ulpgc.eite.cleancode.calculator.basic;
+package es.ulpgc.eite.cleancode.calculator.standard;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -11,19 +11,17 @@ import android.widget.Toast;
 
 import es.ulpgc.eite.cleancode.calculator.R;
 
-public class BasicActivity extends AppCompatActivity
-    implements BasicContract.View, View.OnClickListener {
+public class StandardActivity extends AppCompatActivity
+    implements StandardContract.View, View.OnClickListener {
 
-  public static String TAG = BasicActivity.class.getSimpleName();
+  public static String TAG = StandardActivity.class.getSimpleName();
 
-  //private BasicContract.Presenter presenter;
-  private BasicContract.Presenter presenter;
+  private StandardContract.Presenter presenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_basic);
-
+    setContentView(R.layout.activity_standard);
 
     findViewById(R.id.button0).setOnClickListener(this);
     findViewById(R.id.button1).setOnClickListener(this);
@@ -43,8 +41,11 @@ public class BasicActivity extends AppCompatActivity
     findViewById(R.id.buttonMinus).setOnClickListener(this);
     findViewById(R.id.buttonPlus).setOnClickListener(this);
 
+    findViewById(R.id.buttonMult).setOnClickListener(this);
+    findViewById(R.id.buttonDiv).setOnClickListener(this);
+
     // do the setup
-    BasicScreen.configure(this);
+    StandardScreen.configure(this);
   }
 
   @Override
@@ -55,13 +56,6 @@ public class BasicActivity extends AppCompatActivity
     presenter.init();
   }
 
-
-
-  @Override
-  public void injectPresenter(BasicContract.Presenter presenter) {
-    this.presenter = presenter;
-  }
-
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
@@ -69,10 +63,15 @@ public class BasicActivity extends AppCompatActivity
     Log.e(TAG, "onConfigurationChanged()");
 
     int orientation = newConfig.orientation;
-    if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
       presenter.configChanged();
     }
 
+  }
+
+  @Override
+  public void injectPresenter(StandardContract.Presenter presenter) {
+    this.presenter = presenter;
   }
 
   @Override
@@ -94,17 +93,4 @@ public class BasicActivity extends AppCompatActivity
     //Log.e(TAG, "displayWarning()");
     Toast.makeText(this, text, Toast.LENGTH_LONG).show();
   }
-
-  /*
-  @Override
-  public void notifyWrongNumberWarning() {
-    Log.e(TAG, "notifyWrongNumberWarning()");
-  }
-
-  @Override
-  public void notifyOperationErrorWarning() {
-    Log.e(TAG, "notifyOperationErrorWarning()");
-  }
-  */
-
 }

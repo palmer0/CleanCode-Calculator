@@ -1,11 +1,12 @@
 package es.ulpgc.eite.cleancode.calculator.basic;
 
-import java.lang.ref.WeakReference;
-
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import java.lang.ref.WeakReference;
+
+import es.ulpgc.eite.cleancode.calculator.app.SharedState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainPresenter;
 
@@ -16,7 +17,7 @@ public class BasicPresenter
 
   private WeakReference<BasicContract.View> view;
   private BasicViewModel viewModel;
-  private BrainContract.Model model;
+  //private BrainContract.Model model;
   private BasicContract.Router router;
 
 
@@ -66,6 +67,30 @@ public class BasicPresenter
   @Override
   public void init() {
     model.init();
+
+    SharedState state = router.getDataFromStandardScreen();
+    if(state != null) {
+      setResult(state.result);
+      setSavedOperand(state.savedOperand);
+      setNumber(state.number);
+      setDisplay(state.display);
+    }
+
+    displayNumber();
+  }
+
+  /*
+  @Override
+  public void init() {
+    SharedState state = router.getDataFromStandardScreen();
+    if(state != null) {
+      viewModel.result = state.result;
+      viewModel.savedOperand = state.savedOperand;
+      viewModel.number = state.number;
+      viewModel.display = state.display;
+    }
+
+    model.init();
     model.setResult(viewModel.result);
 
     //setNumber("0");
@@ -73,6 +98,18 @@ public class BasicPresenter
     //setDisplay("0");
 
     displayNumber();
+  }
+  */
+
+  @Override
+  public void configChanged() {
+    Log.e(TAG, "configChanged()");
+
+    viewModel.result = model.getResult();
+    //setResult(model.getResult());
+
+    router.passDataToStandardScreen(viewModel);
+    router.navigateToStandardScreen();
   }
 
   @Override
@@ -85,13 +122,13 @@ public class BasicPresenter
 
     } catch (NumberFormatException ex) {
 
-      if(button.equals("+") || button.equals("-") || button.equals("=")){
+      if (button.equals("+") || button.equals("-") || button.equals("=")) {
         operatorPressed(button);
-      } else if(button.equals("Clr")){
+      } else if (button.equals("Clr")) {
         clearPressed();
-      } else if(button.equals("Del")){
+      } else if (button.equals("Del")) {
         backspacePressed();
-      } else if(button.equals(".")){
+      } else if (button.equals(".")) {
         dotPressed();
       }
     }
@@ -99,7 +136,7 @@ public class BasicPresenter
 
   /*
   @Override
-  public void onButtonClicked(String button) {
+  public void buttonClicked(String button) {
 
     try {
 
@@ -135,16 +172,26 @@ public class BasicPresenter
 
   @Override
   public void setDisplay(String d) {
+    Log.e(TAG, "display: " + d);
     viewModel.display = d;
   }
 
 
   protected void setNumber(String n) {
+    Log.e(TAG, "number: " + n);
     viewModel.number = n;
   }
 
   protected void setSavedOperand(String so) {
+    Log.e(TAG, "operand: " + so);
     viewModel.savedOperand = so;
+  }
+
+
+  protected void setResult(Integer n) {
+    Log.e(TAG, "result: " + n);
+    model.setResult(n);
+    viewModel.result = n;
   }
 
   protected String getNumber() {
@@ -155,10 +202,7 @@ public class BasicPresenter
     return viewModel.savedOperand;
   }
 
-  protected void setResult(Integer n) {
-    model.setResult(n);
-    viewModel.result = n;
-  }
+
 
 //  @Override
 //  public void backspacePressed() {

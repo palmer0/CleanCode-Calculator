@@ -1,19 +1,17 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
-import java.lang.ref.WeakReference;
-
-import es.ulpgc.eite.cleancode.calculator.basic.BasicContract;
-
 public interface BrainContract {
-
 
 
   interface Presenter {
 //    void injectView(WeakReference<BasicContract.View> view);
-//    void injectModel(BrainContract.Model model);
 //    void injectRouter(BasicContract.Router router);
 
+    //void injectModel(BrainContract.Model model);
+
     void init();
+
+    //void configChanged();
 
     //void buttonClicked(String button);
     void dotPressed();

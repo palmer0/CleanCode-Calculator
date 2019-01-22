@@ -2,8 +2,8 @@ package es.ulpgc.eite.cleancode.calculator.basic;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.calculator.app.SharedState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
-import es.ulpgc.eite.cleancode.calculator.brain.NumberValidator;
 
 public interface BasicContract {
 
@@ -23,7 +23,7 @@ public interface BasicContract {
     void injectRouter(Router router);
 
     void init();
-
+    void configChanged();
     void buttonClicked(String button);
 //    void dotPressed();
 //    String getDisplay();
@@ -35,8 +35,12 @@ public interface BasicContract {
   }
 
   interface Router {
-    void navigateToNextScreen();
-    void passDataToNextScreen(String data);
-    String getDataFromPreviousScreen();
+    void navigateToStandardScreen();
+    SharedState getDataFromStandardScreen();
+    void passDataToStandardScreen(BasicViewModel viewModel);
+//    void passDataToStandardScreen(
+////        String display, String number, String savedOperand, Integer result
+////    );
+
   }
 }

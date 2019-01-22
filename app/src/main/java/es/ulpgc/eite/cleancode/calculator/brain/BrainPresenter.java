@@ -1,23 +1,15 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.app.FragmentActivity;
-
-import java.lang.ref.WeakReference;
-
-import es.ulpgc.eite.cleancode.calculator.basic.BasicContract;
-import es.ulpgc.eite.cleancode.calculator.basic.BasicViewModel;
-
 public abstract class BrainPresenter implements BrainContract.Presenter {
 
-//  public static String TAG = BrainPresenter.class.getSimpleName();
-//
+  //  public static String TAG = BrainPresenter.class.getSimpleName();
+
 //  private WeakReference<BasicContract.View> view;
 //  private BasicViewModel viewModel;
-    private BrainContract.Model model;
 //  private BasicContract.Router router;
-//
-//
+
+  protected BrainContract.Model model;
+
 //  public BrainPresenter(WeakReference<FragmentActivity> context) {
 //    viewModel = ViewModelProviders
 //        .of(context.get())
@@ -40,8 +32,22 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 //    this.router = router;
 //  }
 
+
+  protected abstract void setSavedOperand(String so);
+  protected abstract String getNumber();
+  protected abstract void setNumber(String n);
+  protected abstract String getSavedOperand();
+
+  protected abstract void setResult(Integer n);
+
   protected abstract void displayNumber();
   protected abstract void displayWarning(String text);
+
+//  @Override
+//  public void injectModel(BrainContract.Model model) {
+//    this.model = model;
+//  }
+
 
 //  private void displayNumber() {
 //    view.get().display(getDisplay());
@@ -104,7 +110,6 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 //  }
 
 
-
 //  @Override
 //  public void dotPressed() {
 //
@@ -136,13 +141,6 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 //  private String getSavedOperand() {
 //    return viewModel.savedOperand;
 //  }
-
-  protected abstract void setSavedOperand(String so);
-  protected abstract String getNumber();
-  protected abstract void setNumber(String n);
-  protected abstract String getSavedOperand();
-
-  protected abstract void setResult(Integer n);
 
 
 

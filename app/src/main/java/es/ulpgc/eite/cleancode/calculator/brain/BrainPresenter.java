@@ -10,6 +10,19 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 
   protected BrainContract.Model model;
 
+
+  protected abstract void setSavedOperand(String so);
+  protected abstract String getNumber();
+  protected abstract void setNumber(String n);
+  protected abstract String getSavedOperand();
+
+  protected abstract void setResult(Integer n);
+
+  protected abstract void displayNumber();
+  protected abstract void displayWarning(String text);
+
+
+
 //  public BrainPresenter(WeakReference<FragmentActivity> context) {
 //    viewModel = ViewModelProviders
 //        .of(context.get())
@@ -33,15 +46,6 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 //  }
 
 
-  protected abstract void setSavedOperand(String so);
-  protected abstract String getNumber();
-  protected abstract void setNumber(String n);
-  protected abstract String getSavedOperand();
-
-  protected abstract void setResult(Integer n);
-
-  protected abstract void displayNumber();
-  protected abstract void displayWarning(String text);
 
 //  @Override
 //  public void injectModel(BrainContract.Model model) {

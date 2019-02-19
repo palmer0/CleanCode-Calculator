@@ -1,25 +1,27 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
-import android.support.v4.app.FragmentActivity;
-
-import java.lang.ref.WeakReference;
-
 public class BrainModel implements BrainContract.Model {
 
   public static String TAG = BrainModel.class.getSimpleName();
-
-  private WeakReference<FragmentActivity> context;
-
-  private int result;
-  private NumberValidator validator;
 
   public class CalcDivideByZeroException extends Exception {
     private static final long serialVersionUID = 1L;
   }
 
+  //private WeakReference<FragmentActivity> context;
+
+  private int result;
+  private NumberValidator validator;
+
+  public BrainModel(){
+
+  }
+
+  /*
   public BrainModel(WeakReference<FragmentActivity> context) {
     this.context = context;
   }
+  */
 
   /*
   @Override

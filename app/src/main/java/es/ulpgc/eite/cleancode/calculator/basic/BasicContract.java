@@ -14,6 +14,7 @@ public interface BasicContract {
 
     void display(String text);
     void displayWarning(String text);
+    void finishStandardScreen();
     //void notifyWrongNumberWarning();
     //void notifyOperationErrorWarning();
   }

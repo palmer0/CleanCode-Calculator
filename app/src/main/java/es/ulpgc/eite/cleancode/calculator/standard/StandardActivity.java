@@ -93,4 +93,9 @@ public class StandardActivity extends AppCompatActivity
     //Log.e(TAG, "displayWarning()");
     Toast.makeText(this, text, Toast.LENGTH_LONG).show();
   }
+
+  @Override
+  public void finishBasicScreen() {
+    finish();
+  }
 }

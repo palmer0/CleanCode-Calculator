@@ -13,6 +13,7 @@ interface StandardContract {
 
     void display(String text);
     void displayWarning(String text);
+    void finishBasicScreen();
   }
 
   interface Presenter {

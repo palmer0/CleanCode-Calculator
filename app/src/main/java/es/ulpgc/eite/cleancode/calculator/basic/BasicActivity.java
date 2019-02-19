@@ -95,6 +95,11 @@ public class BasicActivity extends AppCompatActivity
     Toast.makeText(this, text, Toast.LENGTH_LONG).show();
   }
 
+  @Override
+  public void finishStandardScreen() {
+    finish();
+  }
+
   /*
   @Override
   public void notifyWrongNumberWarning() {

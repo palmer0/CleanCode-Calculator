@@ -1,7 +1,5 @@
 package es.ulpgc.eite.cleancode.calculator.standard;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
@@ -18,14 +16,22 @@ public class StandardPresenter
 
   private WeakReference<StandardContract.View> view;
   private StandardViewModel viewModel;
+  private StandardState state;
   //private BrainContract.Model model;
   private StandardContract.Router router;
 
+  public StandardPresenter(StandardState state) {
+    this.state = state;
+    viewModel = state;
+  }
+
+  /*
   public StandardPresenter(WeakReference<FragmentActivity> context) {
     viewModel = ViewModelProviders
         .of(context.get())
         .get(StandardViewModel.class);
   }
+  */
 
   @Override
   public void injectView(WeakReference<StandardContract.View> view) {
@@ -105,18 +111,21 @@ public class StandardPresenter
     }
     */
 
-    viewModel.result = model.getResult();
+    //viewModel.result = model.getResult();
+    state.result = model.getResult();
     //setResult(model.getResult());
 
     SharedState commandState = new SharedState();
     commandState.number = viewModel.number;
     commandState.display = viewModel.display;
     commandState.savedOperand = viewModel.savedOperand;
-    commandState.result = viewModel.result;
+    //commandState.result = viewModel.result;
+    commandState.result = state.result;
 
     router.passStateToBasicScreen(commandState, commandHistory);
     //router.passStateToBasicScreen(viewModel);
     router.navigateToBasicScreen();
+    view.get().finishBasicScreen();
   }
 
   @Override
@@ -151,20 +160,23 @@ public class StandardPresenter
   private void commandExecuted() {
     Log.e(TAG, "commandExecuted()");
 
-    viewModel.result = model.getResult();
+    //viewModel.result = model.getResult();
+    state.result = model.getResult();
 
-    SharedState state = new SharedState();
-    state.number = viewModel.number;
-    state.display = viewModel.display;
-    state.savedOperand = viewModel.savedOperand;
-    state.result = viewModel.result;
+    SharedState sharedState = new SharedState();
+    sharedState.number = viewModel.number;
+    sharedState.display = viewModel.display;
+    sharedState.savedOperand = viewModel.savedOperand;
+    //sharedState.result = viewModel.result;
+    sharedState.result = state.result;
 
     Log.e(TAG, "display: " + viewModel.display);
     Log.e(TAG, "number: " + viewModel.number);
     Log.e(TAG, "operand: " + viewModel.savedOperand);
-    Log.e(TAG, "result: " + viewModel.result);
+    //Log.e(TAG, "result: " + viewModel.result);
+    Log.e(TAG, "result: " + state.result);
 
-    commandExecuted(state);
+    commandExecuted(sharedState);
   }
 
   @Override
@@ -217,7 +229,8 @@ public class StandardPresenter
   protected void setResult(Integer n) {
     Log.e(TAG, "result: " + n);
     model.setResult(n);
-    viewModel.result = n;
+    //viewModel.result = n;
+    state.result = n;
   }
 
   protected String getNumber() {
@@ -227,7 +240,5 @@ public class StandardPresenter
   protected String getSavedOperand() {
     return viewModel.savedOperand;
   }
-
-
 
 }

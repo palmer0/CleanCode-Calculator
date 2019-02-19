@@ -1,7 +1,5 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +13,7 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 //  private BasicViewModel viewModel;
 //  private BasicContract.Router router;
 
-  protected BrainContract.Model model;
 
-  protected List<SharedState> commandHistory = new ArrayList<>();
 
   protected abstract void setSavedOperand(String so);
   protected abstract String getNumber();
@@ -29,6 +25,9 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
   protected abstract void displayNumber();
   protected abstract void displayWarning(String text);
 
+  protected BrainContract.Model model;
+
+  protected List<SharedState> commandHistory = new ArrayList<>();
 
 
 //  public BrainPresenter(WeakReference<FragmentActivity> context) {

@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentActivity;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.calculator.app.AppMediator;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainModel;
 
@@ -14,9 +15,15 @@ public class BasicScreen {
     WeakReference<FragmentActivity> context =
         new WeakReference<>((FragmentActivity) view);
 
-    BasicContract.Router router = new BasicRouter(context);
-    BasicContract.Presenter presenter = new BasicPresenter(context);
-    BrainContract.Model model = new BrainModel(context);
+    AppMediator mediator = (AppMediator) context.get().getApplication();
+    BasicState state = mediator.basicState;
+
+    //BasicContract.Router router = new BasicRouter(context);
+    BasicContract.Router router = new BasicRouter(mediator);
+    //BasicContract.Presenter presenter = new BasicPresenter(context);
+    BasicContract.Presenter presenter = new BasicPresenter(state);
+    //BrainContract.Model model = new BrainModel(context);
+    BrainContract.Model model = new BrainModel();
     presenter.injectModel(model);
     presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));

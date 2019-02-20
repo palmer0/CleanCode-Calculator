@@ -5,7 +5,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import es.ulpgc.eite.cleancode.calculator.app.SharedState;
+import es.ulpgc.eite.cleancode.calculator.app.CommandState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainPresenter;
 
@@ -54,12 +54,12 @@ public class StandardPresenter
   public void init() {
     model.init();
 
-    List<SharedState> history = router.getHistoryFromBasicScreen();
+    List<CommandState> history = router.getHistoryFromBasicScreen();
     if(history != null) {
       commandHistory.addAll(history);
     }
 
-    SharedState state = router.getStateFromBasicScreen();
+    CommandState state = router.getStateFromBasicScreen();
     if(state != null) {
       setResult(state.result);
       setSavedOperand(state.savedOperand);
@@ -76,7 +76,7 @@ public class StandardPresenter
 
     state.result = model.getResult();
 
-    SharedState commandState = new SharedState();
+    CommandState commandState = new CommandState();
     commandState.number = viewModel.number;
     commandState.display = viewModel.display;
     commandState.savedOperand = viewModel.savedOperand;
@@ -120,25 +120,25 @@ public class StandardPresenter
 
     state.result = model.getResult();
 
-    SharedState sharedState = new SharedState();
-    sharedState.number = viewModel.number;
-    sharedState.display = viewModel.display;
-    sharedState.savedOperand = viewModel.savedOperand;
-    sharedState.result = state.result;
+    CommandState commandState = new CommandState();
+    commandState.number = viewModel.number;
+    commandState.display = viewModel.display;
+    commandState.savedOperand = viewModel.savedOperand;
+    commandState.result = state.result;
 
     Log.e(TAG, "display: " + viewModel.display);
     Log.e(TAG, "number: " + viewModel.number);
     Log.e(TAG, "operand: " + viewModel.savedOperand);
     Log.e(TAG, "result: " + state.result);
 
-    commandExecuted(sharedState);
+    commandExecuted(commandState);
   }
 
   @Override
   public void undoPressed() {
     Log.e(TAG, "undoPressed()");
 
-    SharedState state = commandUndo();
+    CommandState state = commandUndo();
     if(state == null) {
       return;
     }

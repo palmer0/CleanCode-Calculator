@@ -6,7 +6,7 @@ import android.content.Intent;
 import java.util.List;
 
 import es.ulpgc.eite.cleancode.calculator.app.AppMediator;
-import es.ulpgc.eite.cleancode.calculator.app.SharedState;
+import es.ulpgc.eite.cleancode.calculator.app.CommandState;
 import es.ulpgc.eite.cleancode.calculator.basic.BasicActivity;
 
 public class StandardRouter implements StandardContract.Router {
@@ -28,22 +28,22 @@ public class StandardRouter implements StandardContract.Router {
 
   @Override
   public void passStateToBasicScreen(
-      SharedState state, List<SharedState> history) {
-    mediator.state = state;
-    mediator.history = history;
+      CommandState state, List<CommandState> history) {
+    mediator.commandState = state;
+    mediator.commandHistory = history;
   }
 
   @Override
-  public SharedState getStateFromBasicScreen() {
-    SharedState state = mediator.state;
-    mediator.state = null;
+  public CommandState getStateFromBasicScreen() {
+    CommandState state = mediator.commandState;
+    mediator.commandState = null;
     return state;
   }
 
   @Override
-  public List<SharedState> getHistoryFromBasicScreen() {
-    List<SharedState> history = mediator.history;
-    mediator.history = null;
+  public List<CommandState> getHistoryFromBasicScreen() {
+    List<CommandState> history = mediator.commandHistory;
+    mediator.commandHistory = null;
     return history;
   }
 }

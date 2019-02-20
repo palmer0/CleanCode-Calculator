@@ -12,7 +12,7 @@ public class AppMediator extends Application {
   public BasicState basicState = new BasicState();
   public StandardState standardState = new StandardState();
 
-  public SharedState state;
-  public List<SharedState> history;
+  public CommandState commandState;
+  public List<CommandState> commandHistory;
 
 }

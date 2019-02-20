@@ -3,7 +3,7 @@ package es.ulpgc.eite.cleancode.calculator.basic;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import es.ulpgc.eite.cleancode.calculator.app.SharedState;
+import es.ulpgc.eite.cleancode.calculator.app.CommandState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 
 public interface BasicContract {
@@ -30,9 +30,9 @@ public interface BasicContract {
 
   interface Router {
     void navigateToStandardScreen();
-    void passStateToStandardScreen(SharedState state, List<SharedState> history);
-    SharedState getStateFromStandardScreen();
-    List<SharedState> getHistoryFromStandardScreen();
+    void passStateToStandardScreen(CommandState state, List<CommandState> history);
+    CommandState getStateFromStandardScreen();
+    List<CommandState> getHistoryFromStandardScreen();
 
   }
 }

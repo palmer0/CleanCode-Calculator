@@ -1,6 +1,6 @@
 package es.ulpgc.eite.cleancode.calculator.app;
 
-public class SharedState  {
+public class CommandState {
 
   public String display;
   public String number;

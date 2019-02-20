@@ -3,7 +3,7 @@ package es.ulpgc.eite.cleancode.calculator.brain;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ulpgc.eite.cleancode.calculator.app.SharedState;
+import es.ulpgc.eite.cleancode.calculator.app.CommandState;
 
 public abstract class BrainPresenter implements BrainContract.Presenter {
 
@@ -19,20 +19,20 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 
   protected BrainContract.Model model;
 
-  protected List<SharedState> commandHistory = new ArrayList<>();
+  protected List<CommandState> commandHistory = new ArrayList<>();
 
 
-  protected void commandExecuted(SharedState state) {
+  protected void commandExecuted(CommandState state) {
     commandHistory.add(state);
   }
 
-  protected SharedState commandUndo() {
+  protected CommandState commandUndo() {
     if (commandHistory.isEmpty()) {
       return null;
     }
 
     int index = commandHistory.size() - 1;
-    SharedState state = commandHistory.get(index);
+    CommandState state = commandHistory.get(index);
     commandHistory.remove(index);
     return state;
   }

@@ -73,7 +73,7 @@ public class BasicPresenter
 
   @Override
   public void configChanged() {
-    Log.e(TAG, "configChanged()");
+    //Log.e(TAG, "configChanged()");
 
     state.result = model.getResult();
 
@@ -115,7 +115,7 @@ public class BasicPresenter
   }
 
   private void commandExecuted() {
-    Log.e(TAG, "commandExecuted()");
+    //Log.e(TAG, "commandExecuted()");
 
     state.result = model.getResult();
 
@@ -125,10 +125,10 @@ public class BasicPresenter
     commandState.savedOperand = viewModel.savedOperand;
     commandState.result = state.result;
 
-    Log.e(TAG, "display: " + viewModel.display);
-    Log.e(TAG, "number: " + viewModel.number);
-    Log.e(TAG, "operand: " + viewModel.savedOperand);
-    Log.e(TAG, "result: " + state.result);
+//    Log.e(TAG, "display: " + viewModel.display);
+//    Log.e(TAG, "number: " + viewModel.number);
+//    Log.e(TAG, "operand: " + viewModel.savedOperand);
+//    Log.e(TAG, "result: " + state.result);
 
     commandExecuted(commandState);
   }
@@ -137,7 +137,7 @@ public class BasicPresenter
 
   @Override
   public void undoPressed() {
-    Log.e(TAG, "undoPressed()");
+    //Log.e(TAG, "undoPressed()");
 
     CommandState state = commandUndo();
     if(state == null) {
@@ -159,26 +159,25 @@ public class BasicPresenter
 
   @Override
   public void setDisplay(String d) {
-    Log.e(TAG, "display: " + d);
+    //Log.e(TAG, "display: " + d);
     viewModel.display = d;
   }
 
 
   protected void setNumber(String n) {
-    Log.e(TAG, "number: " + n);
+    //Log.e(TAG, "number: " + n);
     viewModel.number = n;
   }
 
   protected void setSavedOperand(String so) {
-    Log.e(TAG, "operand: " + so);
+    //Log.e(TAG, "operand: " + so);
     viewModel.savedOperand = so;
   }
 
 
   protected void setResult(Integer n) {
-    Log.e(TAG, "result: " + n);
+    //Log.e(TAG, "result: " + n);
     model.setResult(n);
-    //viewModel.result = n;
     state.result = n;
   }
 

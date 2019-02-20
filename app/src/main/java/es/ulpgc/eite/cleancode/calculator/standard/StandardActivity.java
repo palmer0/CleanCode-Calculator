@@ -83,14 +83,12 @@ public class StandardActivity extends AppCompatActivity
 
   @Override
   public void display(String text) {
-    //Log.e(TAG, "display()");
     TextView display = findViewById(R.id.textDisplay);
     display.setText(text);
   }
 
   @Override
   public void displayWarning(String text) {
-    //Log.e(TAG, "displayWarning()");
     Toast.makeText(this, text, Toast.LENGTH_LONG).show();
   }
 

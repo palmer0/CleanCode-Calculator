@@ -18,11 +18,8 @@ public class BasicScreen {
     AppMediator mediator = (AppMediator) context.get().getApplication();
     BasicState state = mediator.basicState;
 
-    //BasicContract.Router router = new BasicRouter(context);
     BasicContract.Router router = new BasicRouter(mediator);
-    //BasicContract.Presenter presenter = new BasicPresenter(context);
     BasicContract.Presenter presenter = new BasicPresenter(state);
-    //BrainContract.Model model = new BrainModel(context);
     BrainContract.Model model = new BrainModel();
     presenter.injectModel(model);
     presenter.injectRouter(router);

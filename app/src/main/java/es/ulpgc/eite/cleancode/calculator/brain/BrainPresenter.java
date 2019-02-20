@@ -7,14 +7,6 @@ import es.ulpgc.eite.cleancode.calculator.app.SharedState;
 
 public abstract class BrainPresenter implements BrainContract.Presenter {
 
-  //  public static String TAG = BrainPresenter.class.getSimpleName();
-
-//  private WeakReference<BasicContract.View> view;
-//  private BasicViewModel viewModel;
-//  private BasicContract.Router router;
-
-
-
   protected abstract void setSavedOperand(String so);
   protected abstract String getNumber();
   protected abstract void setNumber(String n);
@@ -28,130 +20,6 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
   protected BrainContract.Model model;
 
   protected List<SharedState> commandHistory = new ArrayList<>();
-
-
-//  public BrainPresenter(WeakReference<FragmentActivity> context) {
-//    viewModel = ViewModelProviders
-//        .of(context.get())
-//        .get(BasicViewModel.class);
-//  }
-//
-//  @Override
-//  public void injectView(WeakReference<BasicContract.View> view) {
-//    this.view = view;
-//  }
-//
-//  @Override
-//  public void injectModel(BrainContract.Model model) {
-//    this.model = model;
-//  }
-//
-//
-//  @Override
-//  public void injectRouter(BasicContract.Router router) {
-//    this.router = router;
-//  }
-
-
-
-//  @Override
-//  public void injectModel(BrainContract.Model model) {
-//    this.model = model;
-//  }
-
-
-//  private void displayNumber() {
-//    view.get().display(getDisplay());
-//
-//  }
-//
-//  private void displayWarning(String text) {
-//    view.get().displayWarning(text);
-//  }
-
-  /*
-  private void notifyOperationErrorWarning() {
-    view.get().notifyOperationErrorWarning();
-
-  }
-
-  private void notifyWrongNumberWarning() {
-    view.get().notifyWrongNumberWarning();
-
-  }
-  */
-
-//  @Override
-//  public void init() {
-//    model.init();
-//    model.setResult(viewModel.result);
-//
-//    //setNumber("0");
-//    //setSavedOperand("");
-//    //setDisplay("0");
-//
-//    displayNumber();
-//  }
-
-//  private void setResult(Integer n) {
-//    model.setResult(n);
-//    viewModel.result = n;
-//  }
-
-//  @Override
-//  public void buttonClicked(String button) {
-//
-//    try {
-//
-//      Integer.parseInt(button);
-//      digitPressed(button);
-//
-//    } catch (NumberFormatException ex) {
-//
-//      if(button.equals("+") || button.equals("-") || button.equals("=")){
-//        operatorPressed(button);
-//      } else if(button.equals("Clr")){
-//        clearPressed();
-//      } else if(button.equals("Del")){
-//        backspacePressed();
-//      } else if(button.equals(".")){
-//        undoPressed();
-//      }
-//    }
-//  }
-
-
-//  @Override
-//  public void undoPressed() {
-//
-//  }
-//
-//  @Override
-//  public String getDisplay() {
-//    return viewModel.display;
-//  }
-//
-//  @Override
-//  public void setDisplay(String d) {
-//    viewModel.display = d;
-//  }
-
-
-//  private void setNumber(String n) {
-//    viewModel.number = n;
-//  }
-//
-//  private void setSavedOperand(String so) {
-//    viewModel.savedOperand = so;
-//  }
-//
-//  private String getNumber() {
-//    return viewModel.number;
-//  }
-//
-//  private String getSavedOperand() {
-//    return viewModel.savedOperand;
-//  }
 
 
   protected void commandExecuted(SharedState state) {
@@ -218,11 +86,9 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
     Integer n;
 
     try {
-      //n = convertToInteger(getNumber());
       n = Integer.parseInt(getNumber());
     } catch (Exception ex) {
       displayWarning("Wrong number");
-      //notifyWrongNumberWarning();
       Integer currentValue = model.getResult();
       setNumber(currentValue.toString());
       setDisplay(getNumber());
@@ -233,8 +99,6 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 
 
     if (getSavedOperand().equals("") && model.getResult() == 0) {
-      //model.setResult(n);
-      //viewModel.result = n;
       setResult(n);
 
     } else {
@@ -255,7 +119,6 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 
       } catch (Exception ex) {
         displayWarning("Operation error");
-        //notifyOperationErrorWarning();
       }
     }
 
@@ -278,13 +141,5 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
       return "";
     }
   }
-
-
-  /*
-  private Integer convertToInteger(String text) throws Exception {
-    Integer number = Integer.parseInt(text);
-    return number;
-  }
-  */
 
 }

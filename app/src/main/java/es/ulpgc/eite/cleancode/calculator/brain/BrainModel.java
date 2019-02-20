@@ -8,28 +8,12 @@ public class BrainModel implements BrainContract.Model {
     private static final long serialVersionUID = 1L;
   }
 
-  //private WeakReference<FragmentActivity> context;
-
   private int result;
   private NumberValidator validator;
 
   public BrainModel(){
 
   }
-
-  /*
-  public BrainModel(WeakReference<FragmentActivity> context) {
-    this.context = context;
-  }
-  */
-
-  /*
-  @Override
-  public String fetchData() {
-    // Log.e(TAG, "fetchData()");
-    return "Hello";
-  }
-  */
 
   @Override
   public void init() {

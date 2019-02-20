@@ -4,16 +4,9 @@ public interface BrainContract {
 
 
   interface Presenter {
-//    void injectView(WeakReference<BasicContract.View> view);
-//    void injectRouter(BasicContract.Router router);
-
-    //void injectModel(BrainContract.Model model);
 
     void init();
 
-    //void configChanged();
-
-    //void buttonClicked(String button);
     void undoPressed();
     String getDisplay();
     void setDisplay(String d);

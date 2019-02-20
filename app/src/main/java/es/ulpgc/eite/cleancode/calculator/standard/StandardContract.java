@@ -28,7 +28,6 @@ interface StandardContract {
 
   interface Router {
     void navigateToBasicScreen();
-    //void passStateToBasicScreen(StandardViewModel viewModel);
     void passStateToBasicScreen(SharedState state, List<SharedState> history);
     SharedState getStateFromBasicScreen();
     List<SharedState> getHistoryFromBasicScreen();

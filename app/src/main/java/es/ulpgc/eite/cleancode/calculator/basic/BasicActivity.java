@@ -16,7 +16,6 @@ public class BasicActivity extends AppCompatActivity
 
   public static String TAG = BasicActivity.class.getSimpleName();
 
-  //private BasicContract.Presenter presenter;
   private BasicContract.Presenter presenter;
 
   @Override
@@ -55,8 +54,6 @@ public class BasicActivity extends AppCompatActivity
     presenter.init();
   }
 
-
-
   @Override
   public void injectPresenter(BasicContract.Presenter presenter) {
     this.presenter = presenter;
@@ -84,14 +81,12 @@ public class BasicActivity extends AppCompatActivity
 
   @Override
   public void display(String text) {
-    //Log.e(TAG, "display()");
     TextView display = findViewById(R.id.textDisplay);
     display.setText(text);
   }
 
   @Override
   public void displayWarning(String text) {
-    //Log.e(TAG, "displayWarning()");
     Toast.makeText(this, text, Toast.LENGTH_LONG).show();
   }
 
@@ -99,17 +94,5 @@ public class BasicActivity extends AppCompatActivity
   public void finishStandardScreen() {
     finish();
   }
-
-  /*
-  @Override
-  public void notifyWrongNumberWarning() {
-    Log.e(TAG, "notifyWrongNumberWarning()");
-  }
-
-  @Override
-  public void notifyOperationErrorWarning() {
-    Log.e(TAG, "notifyOperationErrorWarning()");
-  }
-  */
 
 }

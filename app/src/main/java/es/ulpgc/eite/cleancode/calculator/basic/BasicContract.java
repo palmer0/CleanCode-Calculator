@@ -15,8 +15,6 @@ public interface BasicContract {
     void display(String text);
     void displayWarning(String text);
     void finishStandardScreen();
-    //void notifyWrongNumberWarning();
-    //void notifyOperationErrorWarning();
   }
 
   interface Presenter {
@@ -27,13 +25,7 @@ public interface BasicContract {
     void init();
     void configChanged();
     void buttonClicked(String button);
-//    void undoPressed();
-//    String getDisplay();
-//    void setDisplay(String d);
-//    void backspacePressed();
-//    void clearPressed();
-//    void digitPressed(String c);
-//    void operatorPressed(String c);
+
   }
 
   interface Router {
@@ -41,12 +33,6 @@ public interface BasicContract {
     void passStateToStandardScreen(SharedState state, List<SharedState> history);
     SharedState getStateFromStandardScreen();
     List<SharedState> getHistoryFromStandardScreen();
-    //void passStateToStandardScreen(BasicViewModel viewModel);
 
-    /*
-    void passStateToStandardScreen(
-        String display, String number, String savedOperand, Integer result
-    );
-    */
   }
 }

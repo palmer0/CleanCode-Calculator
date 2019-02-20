@@ -17,16 +17,7 @@ public class BasicPresenter
   private WeakReference<BasicContract.View> view;
   private BasicViewModel viewModel;
   private BasicState state;
-  //private BrainContract.Model model;
   private BasicContract.Router router;
-
-  /*
-  public BasicPresenter(WeakReference<FragmentActivity> context) {
-    viewModel = ViewModelProviders
-        .of(context.get())
-        .get(BasicViewModel.class);
-  }
-  */
 
   public BasicPresenter(BasicState state) {
     this.state = state;
@@ -79,45 +70,20 @@ public class BasicPresenter
     displayNumber();
   }
 
-  /*
-  @Override
-  public void init() {
-    SharedState state = router.getStateFromStandardScreen();
-    if(state != null) {
-      viewModel.result = state.result;
-      viewModel.savedOperand = state.savedOperand;
-      viewModel.number = state.number;
-      viewModel.display = state.display;
-    }
-
-    model.init();
-    model.setResult(viewModel.result);
-
-    //setNumber("0");
-    //setSavedOperand("");
-    //setDisplay("0");
-
-    displayNumber();
-  }
-  */
 
   @Override
   public void configChanged() {
     Log.e(TAG, "configChanged()");
 
-    //viewModel.result = model.getResult();
     state.result = model.getResult();
-    //setResult(model.getResult());
 
     SharedState commandState = new SharedState();
     commandState.number = viewModel.number;
     commandState.display = viewModel.display;
     commandState.savedOperand = viewModel.savedOperand;
-    //commandState.result = viewModel.result;
     commandState.result = state.result;
 
     router.passStateToStandardScreen(commandState, commandHistory);
-    //router.passStateToStandardScreen(viewModel);
     router.navigateToStandardScreen();
     view.get().finishStandardScreen();
   }
@@ -146,26 +112,22 @@ public class BasicPresenter
       }
     }
 
-    //commandExecuted();
   }
 
   private void commandExecuted() {
     Log.e(TAG, "commandExecuted()");
 
-    //viewModel.result = model.getResult();
     state.result = model.getResult();
 
     SharedState sharedState = new SharedState();
     sharedState.number = viewModel.number;
     sharedState.display = viewModel.display;
     sharedState.savedOperand = viewModel.savedOperand;
-    //sharedState.result = viewModel.result;
     sharedState.result = state.result;
 
     Log.e(TAG, "display: " + viewModel.display);
     Log.e(TAG, "number: " + viewModel.number);
     Log.e(TAG, "operand: " + viewModel.savedOperand);
-    //Log.e(TAG, "result: " + viewModel.result);
     Log.e(TAG, "result: " + state.result);
 
     commandExecuted(sharedState);
@@ -181,13 +143,6 @@ public class BasicPresenter
     if(state == null) {
       return;
     }
-
-    /*
-    viewModel.result = state.result;
-    viewModel.savedOperand = state.savedOperand;
-    viewModel.number = state.number;
-    viewModel.display = state.display;
-    */
 
     setResult(state.result);
     setSavedOperand(state.savedOperand);

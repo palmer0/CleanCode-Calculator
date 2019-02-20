@@ -8,6 +8,5 @@ public class SharedState  {
 
   public Integer result;
 
-
 }
 

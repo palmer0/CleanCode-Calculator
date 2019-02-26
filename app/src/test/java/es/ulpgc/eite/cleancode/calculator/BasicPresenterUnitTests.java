@@ -36,7 +36,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayFromPresenter: Get display failed",
         "0", presenter.getDisplay()
     );
   }
@@ -60,7 +60,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayFromView: Get display failed",
         "0", activity.getDisplay()
     );
 
@@ -89,7 +89,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayNumberClicked: Get display failed",
         "23", activity.getDisplay()
     );
 
@@ -117,7 +117,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayDelClicked: Get display failed",
         "2", activity.getDisplay()
     );
   }
@@ -144,7 +144,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayClrClicked: Get display failed",
         "0", activity.getDisplay()
     );
   }
@@ -171,7 +171,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayAddClicked: Get display failed",
         "23", activity.getDisplay()
     );
   }
@@ -199,7 +199,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayAddAndNumberClicked: Get display failed",
         "5", activity.getDisplay()
     );
   }
@@ -228,7 +228,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayAddAndEqualClicked: Get display failed",
         "28", activity.getDisplay()
     );
   }
@@ -257,7 +257,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayAddAndSubtractClicked: Get display failed",
         "28", activity.getDisplay()
     );
   }
@@ -287,7 +287,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayAddAndSubtractAndNumberClicked: Get display failed",
         "8", activity.getDisplay()
     );
   }
@@ -318,7 +318,7 @@ public class BasicPresenterUnitTests {
 
     // Then
     assertEquals(
-        "Get display failed",
+        "TestDisplayAddAndSubtractAndEqualClicked: Get display failed",
         "20", activity.getDisplay()
     );
   }

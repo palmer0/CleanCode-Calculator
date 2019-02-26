@@ -25,7 +25,7 @@ public class BrainModelUnitTests {
 
     // Then
     assertEquals(
-        "Get add result failed",
+        "TestAdd: Get add result failed",
         6, model.getResult()
     );
   }
@@ -47,7 +47,7 @@ public class BrainModelUnitTests {
 
     // Then
     assertEquals(
-        "Get multiply result failed",
+        "TestMultiply: Get multiply result failed",
         8, model.getResult()
     );
   }
@@ -69,7 +69,7 @@ public class BrainModelUnitTests {
 
     // Then
     assertEquals(
-        "Get divide by zero result failed",
+        "TestDivideByZero: Get divide by zero result failed",
         2, model.getResult()
     );
   }

@@ -110,7 +110,7 @@ public class BasicPresenter
   }
 
 
-  private void saveState() {
+  private void updateState() {
     state.operator = model.getOperator();
     state.number = String.valueOf(model.getNumber());
     state.result = model.getResult();
@@ -121,7 +121,7 @@ public class BasicPresenter
   @Override
   public void stop() {
     Log.e(TAG, "stop()");
-    saveState();
+    updateState();
   }
 
   @Override
@@ -129,7 +129,7 @@ public class BasicPresenter
     //Log.e(TAG, "undoPressed()");
 
     model.undo();
-    saveState();
+    updateState();
 
     setDisplay(String.valueOf(model.getResult()));
     updateDisplay();

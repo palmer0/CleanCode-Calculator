@@ -24,17 +24,6 @@ public class StandardPresenter
   }
 
 
-  @Override
-  public void injectModel(BrainContract.Model model) {
-    this.model = model;
-  }
-
-  @Override
-  public void injectRouter(StandardContract.Router router) {
-    this.router = router;
-  }
-
-
   protected void updateDisplay() {
     view.get().display(getDisplay());
 
@@ -120,7 +109,7 @@ public class StandardPresenter
   }
 
 
-  private void saveState() {
+  private void updateState() {
     state.operator = model.getOperator();
     state.number = String.valueOf(model.getNumber());
     state.result = model.getResult();
@@ -130,7 +119,7 @@ public class StandardPresenter
 
   @Override
   public void stop() {
-    saveState();
+    updateState();
   }
 
   @Override
@@ -138,7 +127,7 @@ public class StandardPresenter
     //Log.e(TAG, "undoPressed()");
 
     model.undo();
-    saveState();
+    updateState();
 
     updateDisplay();
 
@@ -166,5 +155,15 @@ public class StandardPresenter
     this.view = view;
   }
 
+
+  @Override
+  public void injectModel(BrainContract.Model model) {
+    this.model = model;
+  }
+
+  @Override
+  public void injectRouter(StandardContract.Router router) {
+    this.router = router;
+  }
 
 }

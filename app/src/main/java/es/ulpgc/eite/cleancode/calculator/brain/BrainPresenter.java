@@ -1,6 +1,11 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
+import android.util.Log;
+
+
 public abstract class BrainPresenter implements BrainContract.Presenter {
+
+  public static String TAG = BrainPresenter.class.getSimpleName();
 
   protected abstract String getDisplay();
   protected abstract void setDisplay(String display);
@@ -108,6 +113,7 @@ public abstract class BrainPresenter implements BrainContract.Presenter {
 
     setNumber("0");
     setSavedOperator(operator);
+    //Log.e(TAG, "operator: " + operator);
 
   }
 

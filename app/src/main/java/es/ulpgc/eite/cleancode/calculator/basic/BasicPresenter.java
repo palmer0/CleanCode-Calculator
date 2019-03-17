@@ -120,7 +120,7 @@ public class BasicPresenter
 
   @Override
   public void stop() {
-    Log.e(TAG, "stop()");
+    //Log.e(TAG, "stop()");
     updateState();
   }
 

@@ -1,5 +1,7 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
+import java.util.Objects;
+
 import es.ulpgc.eite.cleancode.calculator.app.AppCommand;
 
 public class BrainCommand implements AppCommand {
@@ -69,6 +71,20 @@ public class BrainCommand implements AppCommand {
 
     long newResult = (long) getResult() / operand;
     setResult((int) newResult);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    BrainCommand that = (BrainCommand) obj;
+    return operand == that.operand && result == that.result
+        && Objects.equals(operator, that.operator);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(operator, operand, result);
   }
 
   @Override

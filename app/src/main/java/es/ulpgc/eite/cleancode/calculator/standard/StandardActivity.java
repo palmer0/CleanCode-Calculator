@@ -18,6 +18,8 @@ public class StandardActivity extends AppCompatActivity
 
   private StandardContract.Presenter presenter;
 
+  private boolean configChanged;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -46,16 +48,32 @@ public class StandardActivity extends AppCompatActivity
 
     // do the setup
     StandardScreen.configure(this);
+
+    if(savedInstanceState != null){
+      configChanged = true;
+    }
   }
 
   @Override
   protected void onResume() {
     super.onResume();
 
-    // do some work
-    presenter.init();
+    presenter.start();
+
+    if(configChanged) {
+      presenter.configChanged();
+    }
   }
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+
+    presenter.stop();
+  }
+
+
+  /*
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
@@ -68,11 +86,7 @@ public class StandardActivity extends AppCompatActivity
     }
 
   }
-
-  @Override
-  public void injectPresenter(StandardContract.Presenter presenter) {
-    this.presenter = presenter;
-  }
+  */
 
   @Override
   public void onClick(View view) {
@@ -95,5 +109,11 @@ public class StandardActivity extends AppCompatActivity
   @Override
   public void finishBasicScreen() {
     finish();
+  }
+
+
+  @Override
+  public void injectPresenter(StandardContract.Presenter presenter) {
+    this.presenter = presenter;
   }
 }

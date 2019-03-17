@@ -11,6 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".basic.BasicActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".standard.StandardActivity"/>
+
+        <!--
         <activity android:name=".basic.BasicActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
@@ -22,6 +32,8 @@
         <activity android:name=".standard.StandardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
+        -->
+
     </application>
 
 </manifest>

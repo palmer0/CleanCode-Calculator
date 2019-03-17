@@ -13,15 +13,15 @@ public class BrainModelUnitTests {
 
     // Given
     BrainModel model = new BrainModel();
-    model.init();
 
     // When
-    try {
-      model.add(2);
-      model.add(4);
-    } catch (Exception e) {
+    model.setNumber(2);
+    model.setOperator("+");
+    model.execute();
+    model.setNumber(4);
+    model.setOperator("+");
+    model.execute();
 
-    }
 
     // Then
     assertEquals(
@@ -35,15 +35,15 @@ public class BrainModelUnitTests {
 
     // Given
     BrainModel model = new BrainModel();
-    model.init();
 
     // When
-    try {
-      model.add(2);
-      model.multiply(4);
-    } catch (Exception e) {
+    model.setNumber(2);
+    model.setOperator("+");
+    model.execute();
+    model.setNumber(4);
+    model.setOperator("x");
+    model.execute();
 
-    }
 
     // Then
     assertEquals(
@@ -57,12 +57,15 @@ public class BrainModelUnitTests {
 
     // Given
     BrainModel model = new BrainModel();
-    model.init();
 
     // When
     try {
-      model.add(2);
-      model.divide(0);
+      model.setNumber(2);
+      model.setOperator("+");
+      model.execute();
+      model.setNumber(0);
+      model.setOperator("/");
+      model.execute();
     } catch (Exception e) {
 
     }

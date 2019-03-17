@@ -32,12 +32,12 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
 
     // Then
     assertEquals(
         "TestDisplayFromPresenter: Get display failed",
-        "0", presenter.getDisplay()
+        "0", activity.getDisplay()
     );
   }
 
@@ -56,7 +56,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
 
     // Then
     assertEquals(
@@ -83,7 +83,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
 
@@ -110,7 +110,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("Del");
@@ -137,7 +137,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("Clr");
@@ -164,7 +164,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("+");
@@ -191,7 +191,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("+");
@@ -219,7 +219,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("+");
@@ -248,7 +248,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("+");
@@ -277,7 +277,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("+");
@@ -307,7 +307,7 @@ public class BasicPresenterUnitTests {
     presenter.injectView(new WeakReference<>(view));
 
     // When
-    presenter.init();
+    presenter.start();
     presenter.buttonClicked("2");
     presenter.buttonClicked("3");
     presenter.buttonClicked("+");

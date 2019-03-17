@@ -1,9 +1,8 @@
 package es.ulpgc.eite.cleancode.calculator.standard;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
-import es.ulpgc.eite.cleancode.calculator.app.CommandState;
+import es.ulpgc.eite.cleancode.calculator.app.CalculatorState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 
 interface StandardContract {
@@ -21,15 +20,17 @@ interface StandardContract {
     void injectModel(BrainContract.Model model);
     void injectRouter(Router router);
 
-    void init();
+    void start();
     void configChanged();
     void buttonClicked(String button);
+    void stop();
   }
 
   interface Router {
     void navigateToBasicScreen();
-    void passStateToBasicScreen(CommandState state, List<CommandState> history);
-    CommandState getStateFromBasicScreen();
-    List<CommandState> getHistoryFromBasicScreen();
+    //void passStateToBasicScreen(CalculatorState state, List<CalculatorState> history);
+    void passStateToBasicScreen(CalculatorState state);
+    CalculatorState getStateFromBasicScreen();
+    //List<CalculatorState> getHistoryFromBasicScreen();
   }
 }

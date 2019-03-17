@@ -3,10 +3,8 @@ package es.ulpgc.eite.cleancode.calculator.standard;
 import android.content.Context;
 import android.content.Intent;
 
-import java.util.List;
-
 import es.ulpgc.eite.cleancode.calculator.app.AppMediator;
-import es.ulpgc.eite.cleancode.calculator.app.CommandState;
+import es.ulpgc.eite.cleancode.calculator.app.CalculatorState;
 import es.ulpgc.eite.cleancode.calculator.basic.BasicActivity;
 
 public class StandardRouter implements StandardContract.Router {
@@ -27,23 +25,31 @@ public class StandardRouter implements StandardContract.Router {
   }
 
   @Override
+  public void passStateToBasicScreen(CalculatorState state) {
+    mediator.calculatorState = state;
+  }
+
+  @Override
+  public CalculatorState getStateFromBasicScreen() {
+    CalculatorState state = mediator.calculatorState;
+    mediator.calculatorState = null;
+    return state;
+  }
+
+  /*
+  @Override
   public void passStateToBasicScreen(
-      CommandState state, List<CommandState> history) {
-    mediator.commandState = state;
+      CalculatorState state, List<CalculatorState> history) {
+    mediator.calculatorState = state;
     mediator.commandHistory = history;
   }
 
   @Override
-  public CommandState getStateFromBasicScreen() {
-    CommandState state = mediator.commandState;
-    mediator.commandState = null;
-    return state;
-  }
-
-  @Override
-  public List<CommandState> getHistoryFromBasicScreen() {
-    List<CommandState> history = mediator.commandHistory;
+  public List<CalculatorState> getHistoryFromBasicScreen() {
+    List<CalculatorState> history = mediator.commandHistory;
     mediator.commandHistory = null;
     return history;
   }
+  */
+
 }

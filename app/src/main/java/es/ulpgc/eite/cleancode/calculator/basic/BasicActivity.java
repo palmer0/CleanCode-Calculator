@@ -1,9 +1,7 @@
 package es.ulpgc.eite.cleancode.calculator.basic;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +15,8 @@ public class BasicActivity extends AppCompatActivity
   public static String TAG = BasicActivity.class.getSimpleName();
 
   private BasicContract.Presenter presenter;
+
+  private boolean configChanged;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -44,21 +44,31 @@ public class BasicActivity extends AppCompatActivity
 
     // do the setup
     BasicScreen.configure(this);
+
+    if(savedInstanceState != null){
+      configChanged = true;
+    }
   }
 
   @Override
   protected void onResume() {
     super.onResume();
 
-    // do some work
-    presenter.init();
+    presenter.start();
+
+    if(configChanged) {
+      presenter.configChanged();
+    }
   }
 
   @Override
-  public void injectPresenter(BasicContract.Presenter presenter) {
-    this.presenter = presenter;
+  protected void onPause() {
+    super.onPause();
+
+    presenter.stop();
   }
 
+  /*
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
@@ -71,6 +81,7 @@ public class BasicActivity extends AppCompatActivity
     }
 
   }
+  */
 
   @Override
   public void onClick(View view) {
@@ -93,6 +104,12 @@ public class BasicActivity extends AppCompatActivity
   @Override
   public void finishStandardScreen() {
     finish();
+  }
+
+
+  @Override
+  public void injectPresenter(BasicContract.Presenter presenter) {
+    this.presenter = presenter;
   }
 
 }

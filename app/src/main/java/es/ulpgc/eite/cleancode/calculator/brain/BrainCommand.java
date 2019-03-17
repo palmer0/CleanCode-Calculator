@@ -14,10 +14,6 @@ public class BrainCommand implements AppCommand {
     this.operand = operand;
   }
 
-//  public BrainCommand(String operator, Integer operand) {
-//    this.operand = operand;
-//    this.operator = operator;
-//  }
 
   @Override
   public void execute() {
@@ -74,16 +70,6 @@ public class BrainCommand implements AppCommand {
     long newResult = (long) getResult() / operand;
     setResult((int) newResult);
   }
-
-  /*
-  public String getOperator() {
-    return operator;
-  }
-
-  public Integer getOperand() {
-    return operand;
-  }
-  */
 
   @Override
   public String toString() {

@@ -1,9 +1,7 @@
 package es.ulpgc.eite.cleancode.calculator.standard;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -71,22 +69,6 @@ public class StandardActivity extends AppCompatActivity
 
     presenter.stop();
   }
-
-
-  /*
-  @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-
-    Log.e(TAG, "onConfigurationChanged()");
-
-    int orientation = newConfig.orientation;
-    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-      presenter.configChanged();
-    }
-
-  }
-  */
 
   @Override
   public void onClick(View view) {

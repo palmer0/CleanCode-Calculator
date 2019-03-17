@@ -30,10 +30,8 @@ public interface BasicContract {
 
   interface Router {
     void navigateToStandardScreen();
-    //void passStateToStandardScreen(CalculatorState state, List<CalculatorState> history);
     void passStateToStandardScreen(CalculatorState state);
     CalculatorState getStateFromStandardScreen();
-    //List<CalculatorState> getHistoryFromStandardScreen();
 
   }
 }

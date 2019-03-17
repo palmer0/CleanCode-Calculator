@@ -20,16 +20,4 @@ public class MockBasicRouter implements BasicContract.Router {
     return null;
   }
 
-  /*
-  @Override
-  public void passStateToStandardScreen
-      (CalculatorState state, List<CalculatorState> history) {
-
-  }
-
-  @Override
-  public List<CalculatorState> getHistoryFromStandardScreen() {
-    return null;
-  }
-  */
 }

@@ -28,9 +28,7 @@ interface StandardContract {
 
   interface Router {
     void navigateToBasicScreen();
-    //void passStateToBasicScreen(CalculatorState state, List<CalculatorState> history);
     void passStateToBasicScreen(CalculatorState state);
     CalculatorState getStateFromBasicScreen();
-    //List<CalculatorState> getHistoryFromBasicScreen();
   }
 }

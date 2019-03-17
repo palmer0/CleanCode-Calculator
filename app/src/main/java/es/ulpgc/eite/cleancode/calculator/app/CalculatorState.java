@@ -12,6 +12,6 @@ public class CalculatorState {
   public Integer result;
 
   public boolean backspaceEnabled;
-  public List<BrainCommand> commands;
+  public List<BrainCommand> commandList;
 }
 

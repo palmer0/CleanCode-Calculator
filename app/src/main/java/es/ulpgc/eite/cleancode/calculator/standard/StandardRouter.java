@@ -36,20 +36,5 @@ public class StandardRouter implements StandardContract.Router {
     return state;
   }
 
-  /*
-  @Override
-  public void passStateToBasicScreen(
-      CalculatorState state, List<CalculatorState> history) {
-    mediator.calculatorState = state;
-    mediator.commandHistory = history;
-  }
-
-  @Override
-  public List<CalculatorState> getHistoryFromBasicScreen() {
-    List<CalculatorState> history = mediator.commandHistory;
-    mediator.commandHistory = null;
-    return history;
-  }
-  */
 
 }

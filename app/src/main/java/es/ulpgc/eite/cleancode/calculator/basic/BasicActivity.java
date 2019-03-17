@@ -68,20 +68,6 @@ public class BasicActivity extends AppCompatActivity
     presenter.stop();
   }
 
-  /*
-  @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-
-    Log.e(TAG, "onConfigurationChanged()");
-
-    int orientation = newConfig.orientation;
-    if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-      presenter.configChanged();
-    }
-
-  }
-  */
 
   @Override
   public void onClick(View view) {

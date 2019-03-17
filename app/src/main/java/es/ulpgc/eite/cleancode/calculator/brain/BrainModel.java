@@ -1,144 +1,32 @@
 package es.ulpgc.eite.cleancode.calculator.brain;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import es.ulpgc.eite.cleancode.calculator.app.AppCommand;
 
 public class BrainModel implements BrainContract.Model {
 
   public static String TAG = BrainModel.class.getSimpleName();
 
-  /*
-  public class CalcDivideByZeroException extends Exception {
-    private static final long serialVersionUID = 1L;
-  }
-  */
-
-  private List<BrainCommand> commands;
+  private List<BrainCommand> commandList;
 
   private int result;
   private String operator;
   private int number;
 
   public BrainModel(){
-    commands = new ArrayList();
+    commandList = new ArrayList();
   }
 
   @Override
-  public void setCommands(List<BrainCommand> commands) {
-    this.commands = commands;
+  public void setCommandList(List<BrainCommand> commands) {
+    commandList = commands;
   }
 
   @Override
-  public List<BrainCommand> getCommands() {
-    return commands;
+  public List<BrainCommand> getCommandList() {
+    return commandList;
   }
 
-  /*
-  @Override
-  public void add(int operand) throws Exception {
-    long newResult = (long) getResult() + operand;
-    setResult((int) newResult);
-  }
-
-  @Override
-  public void subtract(int operand) throws Exception {
-    long newResult = (long) getResult() - operand;
-    setResult((int) newResult);
-  }
-
-  @Override
-  public void multiply(int operand) throws Exception {
-    long newResult = (long) getResult() * operand;
-    setResult((int) newResult);
-  }
-
-  @Override
-  public void divide(int operand) throws Exception {
-    if (operand == 0) {
-      throw new CalcDivideByZeroException();
-    }
-
-    long newResult = (long) getResult() / operand;
-    setResult((int) newResult);
-  }
-  */
-
-
-//  @Override
-//  public void execute(BrainCommand command) {
-//
-//    command.execute();
-//    result = command.getResult();
-//
-//    /*
-//    if (command.getOperator().equals("+")) {
-//      add(command.getOperand());
-//
-//    } else if (command.getOperator().equals("-")) {
-//      subtract(command.getOperand());
-//
-//    } else if (command.getOperator().equals("x")) {
-//      multiply(command.getOperand());
-//
-//    } else if (command.getOperator().equals("/")) {
-//      divide(command.getOperand());
-//    }
-//    */
-//  }
-
-
-//  private void add(int operand)  {
-//    long newResult = (long) getResult() + operand;
-//    setResult((int) newResult);
-//  }
-//
-//  private void subtract(int operand)  {
-//    long newResult = (long) getResult() - operand;
-//    setResult((int) newResult);
-//  }
-//
-//  private void multiply(int operand)  {
-//    long newResult = (long) getResult() * operand;
-//    setResult((int) newResult);
-//  }
-//
-//  private void divide(int operand) {
-//
-//    long newResult = (long) getResult() / operand;
-//    setResult((int) newResult);
-//  }
-
-
-//  @Override
-//  public void execute(String operator, Integer operand) {
-//    Log.e(TAG, "execute()");
-//
-//    BrainCommand command = new BrainCommand(result, operator, operand);
-//    Log.e(TAG, "command: " + command);
-//    command.execute();
-//
-//    commands.add(command);
-//    result = command.getResult();
-//
-//    /*
-//    if (operator.equals("+")) {
-//      add(operand);
-//
-//    } else if (operator.equals("-")) {
-//      subtract(operand);
-//
-//    } else if (operator.equals("x")) {
-//      multiply(operand);
-//
-//    } else if (operator.equals("/")) {
-//      divide(operand);
-//    }
-//    */
-//  }
 
   @Override
   public void execute() {
@@ -148,37 +36,23 @@ public class BrainModel implements BrainContract.Model {
     //Log.e(TAG, "command: " + command);
     command.execute();
 
-    commands.add(command);
+    commandList.add(command);
     result = command.getResult();
 
-    /*
-    if (operator.equals("+")) {
-      add(operand);
-
-    } else if (operator.equals("-")) {
-      subtract(operand);
-
-    } else if (operator.equals("x")) {
-      multiply(operand);
-
-    } else if (operator.equals("/")) {
-      divide(operand);
-    }
-    */
   }
 
   @Override
   public void undo() {
     //Log.e(TAG, "undo()");
 
-    if(commands.size() - 2 < 0) {
+    if(commandList.size() - 2 < 0) {
       result = 0;
       operator = "";
       number = 0;
 
     } else {
 
-      BrainCommand command = commands.get(commands.size() - 2);
+      BrainCommand command = commandList.get(commandList.size() - 2);
       //Log.e(TAG, "command: " + command);
 
       result = command.getResult();
@@ -186,45 +60,10 @@ public class BrainModel implements BrainContract.Model {
       number = command.getOperand();
     }
 
-    if(commands.size() != 0) {
-      commands.remove(commands.size() - 1);
+    if(commandList.size() != 0) {
+      commandList.remove(commandList.size() - 1);
     }
   }
-
-  /*
-  @Override
-  public void add(int operand)  {
-    long newResult = (long) getResult() + operand;
-    setResult((int) newResult);
-  }
-
-  @Override
-  public void subtract(int operand)  {
-    long newResult = (long) getResult() - operand;
-    setResult((int) newResult);
-  }
-
-  @Override
-  public void multiply(int operand)  {
-    long newResult = (long) getResult() * operand;
-    setResult((int) newResult);
-  }
-
-  @Override
-  public void divide(int operand) {
-
-    long newResult = (long) getResult() / operand;
-    setResult((int) newResult);
-  }
-  */
-
-  /*
-  private void execute() {
-    BrainCommand command = new BrainCommand(getSavedOperator(), operand);
-    model.execute();
-  }
-  */
-
 
   @Override
   public void reset() {

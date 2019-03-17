@@ -11,5 +11,5 @@ public class StandardState extends StandardViewModel {
   public String number = "0";
   public String operator = "";
 
-  public List<BrainCommand> commands = new ArrayList();
+  public List<BrainCommand> commandList = new ArrayList();
 }

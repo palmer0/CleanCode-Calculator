@@ -11,6 +11,5 @@ public class AppMediator extends Application {
   public StandardState standardState = new StandardState();
 
   public CalculatorState calculatorState;
-  //public List<CalculatorState> commandHistory;
 
 }

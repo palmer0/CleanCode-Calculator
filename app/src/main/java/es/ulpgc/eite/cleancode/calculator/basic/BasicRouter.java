@@ -37,21 +37,5 @@ public class BasicRouter implements BasicContract.Router {
     return state;
   }
 
-  /*
-  @Override
-  public void passStateToStandardScreen(
-      CalculatorState state, List<CalculatorState> history) {
-    mediator.calculatorState = state;
-    mediator.commandHistory = history;
-  }
-
-
-  @Override
-  public List<CalculatorState> getHistoryFromStandardScreen() {
-    List<CalculatorState> history = mediator.commandHistory;
-    mediator.commandHistory = null;
-    return history;
-  }
-  */
 
 }

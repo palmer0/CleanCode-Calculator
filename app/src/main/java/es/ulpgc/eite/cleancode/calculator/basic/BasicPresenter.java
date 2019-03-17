@@ -38,25 +38,10 @@ public class BasicPresenter
   public void start() {
     model.reset();
 
-    /*
-    List<CalculatorState> history = router.getHistoryFromStandardScreen();
-    if(history != null) {
-      commandHistory.addAll(history);
-    }
-    */
-
     CalculatorState calcState = router.getStateFromStandardScreen();
     if(calcState != null) {
 
-      /*
-      //setCommands(calcState.commands);
-      setResult(calcState.result);
-      setSavedOperator(calcState.operator);
-      setNumber(calcState.number);
-      setDisplay(calcState.display);
-      */
-
-      model.setCommands(calcState.commands);
+      model.setCommandList(calcState.commandList);
       model.setResult(calcState.result);
       model.setOperator(calcState.operator);
       model.setNumber(Integer.parseInt(calcState.number));
@@ -68,15 +53,7 @@ public class BasicPresenter
       return;
     }
 
-    /*
-    //setCommands(state.commands);
-    setResult(state.result);
-    setSavedOperator(state.operator);
-    setNumber(state.number);
-    setDisplay(state.display);
-    */
-
-    model.setCommands(state.commands);
+    model.setCommandList(state.commandList);
     model.setResult(state.result);
     model.setOperator(state.operator);
     model.setNumber(Integer.parseInt(state.number));
@@ -93,26 +70,15 @@ public class BasicPresenter
   public void configChanged() {
     //Log.e(TAG, "configChanged()");
 
-    /*
-    state.result = model.getResult();
-
-    CalculatorState calcState = new CalculatorState();
-    calcState.number = state.number;
-    calcState.operator = state.operator;
-    calcState.result = state.result;
-    calcState.display = viewModel.display;
-    */
-
     CalculatorState calcState = new CalculatorState();
     calcState.operator = model.getOperator();
     calcState.number = String.valueOf(model.getNumber());
     calcState.result = model.getResult();
-    calcState.commands = model.getCommands();
+    calcState.commandList = model.getCommandList();
     calcState.display = viewModel.display;
     calcState.backspaceEnabled = viewModel.backspaceEnabled;
 
     router.passStateToStandardScreen(calcState);
-    //router.passStateToStandardScreen(calculatorState, commandHistory);
     router.navigateToStandardScreen();
     view.get().finishStandardScreen();
 
@@ -120,12 +86,6 @@ public class BasicPresenter
 
   @Override
   public void buttonClicked(String button) {
-
-    /*
-    if (!button.equals("Undo")) {
-      commandExecuted();
-    }
-    */
 
     try {
 
@@ -149,33 +109,13 @@ public class BasicPresenter
 
   }
 
-  /*
-  private void commandExecuted() {
-    //Log.e(TAG, "commandExecuted()");
-
-    state.result = model.getResult();
-
-    CalculatorState calculatorState = new CalculatorState();
-    calculatorState.number = viewModel.number;
-    calculatorState.display = viewModel.display;
-    calculatorState.operator = viewModel.operator;
-    calculatorState.result = state.result;
-
-//    Log.e(TAG, "display: " + viewModel.display);
-//    Log.e(TAG, "number: " + viewModel.number);
-//    Log.e(TAG, "operand: " + viewModel.operator);
-//    Log.e(TAG, "result: " + state.result);
-
-    commandExecuted(calculatorState);
-  }
-  */
 
   private void saveState() {
     state.operator = model.getOperator();
     state.number = String.valueOf(model.getNumber());
     state.result = model.getResult();
 
-    state.commands = model.getCommands();
+    state.commandList = model.getCommandList();
   }
 
   @Override
@@ -190,24 +130,6 @@ public class BasicPresenter
 
     model.undo();
     saveState();
-
-    /*
-    state.operator = model.getSavedOperator();
-    state.number = String.valueOf(model.getNumber());
-    state.result = model.getResult();
-    */
-
-    /*
-    CalculatorState state = commandUndo();
-    if(state == null) {
-      return;
-    }
-
-    setResult(state.result);
-    setSavedOperator(state.operator);
-    setNumber(state.number);
-    setDisplay(state.display);
-    */
 
     setDisplay(String.valueOf(model.getResult()));
     updateDisplay();
@@ -229,39 +151,6 @@ public class BasicPresenter
   protected boolean isBackspaceEnabled(){
     return viewModel.backspaceEnabled;
   }
-
-//  protected void setNumber(String number) {
-//    //Log.e(TAG, "number: " + number);
-//    model.setNumber(Integer.parseInt(number));
-//    state.number = number;
-//  }
-//
-//  protected void setSavedOperator(String operator) {
-//    //Log.e(TAG, "operator: " + operator);
-//    model.setSavedOperator(operator);
-//    state.operator = operator;
-//  }
-//
-//
-//  protected void setResult(Integer result) {
-//    //Log.e(TAG, "result: " + result);
-//    model.setResult(result);
-//    state.result = result;
-//  }
-//
-//  protected String getNumber() {
-//    return state.number;
-//  }
-//
-//  protected String getSavedOperator() {
-//    return state.operator;
-//  }
-
-  /*
-  private void setCommands(List<BrainCommand> commands) {
-    model.setCommands(commands);
-  }
-  */
 
   @Override
   public void injectView(WeakReference<BasicContract.View> view) {

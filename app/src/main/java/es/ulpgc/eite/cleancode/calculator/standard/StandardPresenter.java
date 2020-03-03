@@ -14,13 +14,11 @@ public class StandardPresenter
   public static String TAG = StandardPresenter.class.getSimpleName();
 
   private WeakReference<StandardContract.View> view;
-  private StandardViewModel viewModel;
   private StandardState state;
   private StandardContract.Router router;
 
   public StandardPresenter(StandardState state) {
     this.state = state;
-    viewModel = state;
   }
 
 
@@ -56,8 +54,8 @@ public class StandardPresenter
     model.setResult(state.result);
     model.setOperator(state.operator);
     model.setNumber(Integer.parseInt(state.number));
-    setBackspaceEnabled(viewModel.backspaceEnabled);
-    setDisplay(viewModel.display);
+    setBackspaceEnabled(state.backspaceEnabled);
+    setDisplay(state.display);
 
     updateDisplay();
   }
@@ -73,8 +71,8 @@ public class StandardPresenter
     calcState.number = String.valueOf(model.getNumber());
     calcState.result = model.getResult();
     calcState.commandList = model.getCommandList();
-    calcState.display = viewModel.display;
-    calcState.backspaceEnabled = viewModel.backspaceEnabled;
+    calcState.display = state.display;
+    calcState.backspaceEnabled = state.backspaceEnabled;
 
     router.passStateToBasicScreen(calcState);
     router.navigateToBasicScreen();
@@ -134,20 +132,20 @@ public class StandardPresenter
   }
 
   protected String getDisplay() {
-    return viewModel.display;
+    return state.display;
   }
 
   protected void setDisplay(String display) {
     Log.e(TAG, "display: " + display);
-    viewModel.display = display;
+    state.display = display;
   }
 
   protected void setBackspaceEnabled(boolean enabled) {
-    viewModel.backspaceEnabled = enabled;
+    state.backspaceEnabled = enabled;
   }
 
   protected boolean isBackspaceEnabled(){
-    return viewModel.backspaceEnabled;
+    return state.backspaceEnabled;
   }
 
   @Override

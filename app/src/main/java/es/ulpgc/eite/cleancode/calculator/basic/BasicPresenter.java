@@ -1,7 +1,5 @@
 package es.ulpgc.eite.cleancode.calculator.basic;
 
-import android.util.Log;
-
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.calculator.app.CalculatorState;
@@ -14,13 +12,11 @@ public class BasicPresenter
   public static String TAG = BasicPresenter.class.getSimpleName();
 
   private WeakReference<BasicContract.View> view;
-  private BasicViewModel viewModel;
   private BasicState state;
   private BasicContract.Router router;
 
   public BasicPresenter(BasicState state) {
     this.state = state;
-    viewModel = state;
   }
 
 
@@ -57,8 +53,8 @@ public class BasicPresenter
     model.setResult(state.result);
     model.setOperator(state.operator);
     model.setNumber(Integer.parseInt(state.number));
-    setBackspaceEnabled(viewModel.backspaceEnabled);
-    setDisplay(viewModel.display);
+    setBackspaceEnabled(state.backspaceEnabled);
+    setDisplay(state.display);
 
     updateDisplay();
   }
@@ -75,8 +71,8 @@ public class BasicPresenter
     calcState.number = String.valueOf(model.getNumber());
     calcState.result = model.getResult();
     calcState.commandList = model.getCommandList();
-    calcState.display = viewModel.display;
-    calcState.backspaceEnabled = viewModel.backspaceEnabled;
+    calcState.display = state.display;
+    calcState.backspaceEnabled = state.backspaceEnabled;
 
     router.passStateToStandardScreen(calcState);
     router.navigateToStandardScreen();
@@ -136,20 +132,20 @@ public class BasicPresenter
   }
 
   protected String getDisplay() {
-    return viewModel.display;
+    return state.display;
   }
 
   protected void setDisplay(String display) {
     //Log.e(TAG, "display: " + display);
-    viewModel.display = display;
+    state.display = display;
   }
 
   protected void setBackspaceEnabled(boolean enabled) {
-    viewModel.backspaceEnabled = enabled;
+    state.backspaceEnabled = enabled;
   }
 
   protected boolean isBackspaceEnabled(){
-    return viewModel.backspaceEnabled;
+    return state.backspaceEnabled;
   }
 
   @Override

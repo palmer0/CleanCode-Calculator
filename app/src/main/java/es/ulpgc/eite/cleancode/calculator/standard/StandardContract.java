@@ -19,7 +19,6 @@ interface StandardContract {
   interface Presenter {
     void injectView(WeakReference<View> view);
     void injectModel(BrainContract.Model model);
-    //void injectRouter(Router router);
 
     void start();
     void configChanged();
@@ -27,9 +26,4 @@ interface StandardContract {
     void stop();
   }
 
-//  interface Router {
-//    void navigateToBasicScreen();
-//    void passStateToBasicScreen(CalculatorState state);
-//    CalculatorState getStateFromBasicScreen();
-//  }
 }

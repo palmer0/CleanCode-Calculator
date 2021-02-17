@@ -16,18 +16,12 @@ public class StandardPresenter
 
   private WeakReference<StandardContract.View> view;
   private StandardState state;
-  //private StandardContract.Router router;
   private AppMediator mediator;
 
   public StandardPresenter(AppMediator mediator) {
     this.mediator = mediator;
     state = mediator.standardState;
   }
-
-//  public StandardPresenter(StandardState state) {
-//    this.state = state;
-//  }
-
 
   private void passStateToBasicScreen(CalculatorState state) {
     mediator.calculatorState = state;
@@ -52,7 +46,6 @@ public class StandardPresenter
   public void start() {
     model.reset();
 
-    //CalculatorState calcState = router.getStateFromBasicScreen();
     CalculatorState calcState = getStateFromBasicScreen();
     if(calcState != null) {
 
@@ -92,8 +85,6 @@ public class StandardPresenter
     calcState.display = state.display;
     calcState.backspaceEnabled = state.backspaceEnabled;
 
-//    router.passStateToBasicScreen(calcState);
-//    router.navigateToBasicScreen();
     passStateToBasicScreen(calcState);
     view.get().navigateToBasicScreen();
     view.get().finishBasicScreen();
@@ -178,10 +169,5 @@ public class StandardPresenter
   public void injectModel(BrainContract.Model model) {
     this.model = model;
   }
-
-//  @Override
-//  public void injectRouter(StandardContract.Router router) {
-//    this.router = router;
-//  }
 
 }

@@ -40,7 +40,6 @@ public class BrainModel implements BrainContract.Model {
 
     commandList.add(command);
     result = command.getResult();
-
   }
 
   @Override
@@ -77,7 +76,6 @@ public class BrainModel implements BrainContract.Model {
     return result;
   }
 
-
   @Override
   public void setResult(int value) {
     result = value;
@@ -102,6 +100,4 @@ public class BrainModel implements BrainContract.Model {
   public void setOperator(String operator) {
     this.operator = operator;
   }
-
-
 }

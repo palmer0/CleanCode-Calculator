@@ -16,6 +16,11 @@ public class MockBasicActivity implements BasicContract.View {
   }
 
   @Override
+  public void navigateToStandardScreen() {
+
+  }
+
+  @Override
   public void display(String text) {
     display = text;
   }

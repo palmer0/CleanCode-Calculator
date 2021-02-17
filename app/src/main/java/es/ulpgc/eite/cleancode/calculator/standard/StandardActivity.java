@@ -1,5 +1,6 @@
 package es.ulpgc.eite.cleancode.calculator.standard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.ulpgc.eite.cleancode.calculator.R;
+import es.ulpgc.eite.cleancode.calculator.basic.BasicActivity;
 
 public class StandardActivity extends AppCompatActivity
     implements StandardContract.View, View.OnClickListener {
@@ -70,6 +72,14 @@ public class StandardActivity extends AppCompatActivity
 
     presenter.stop();
   }
+
+
+  @Override
+  public void navigateToBasicScreen() {
+    Intent intent = new Intent(this, BasicActivity.class);
+    startActivity(intent);
+  }
+
 
   @Override
   public void onClick(View view) {

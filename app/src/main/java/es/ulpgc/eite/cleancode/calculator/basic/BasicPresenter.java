@@ -2,6 +2,7 @@ package es.ulpgc.eite.cleancode.calculator.basic;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.calculator.app.AppMediator;
 import es.ulpgc.eite.cleancode.calculator.app.CalculatorState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainPresenter;
@@ -13,11 +14,18 @@ public class BasicPresenter
 
   private WeakReference<BasicContract.View> view;
   private BasicState state;
-  private BasicContract.Router router;
+  //private BasicContract.Router router;
+  private AppMediator mediator;
 
-  public BasicPresenter(BasicState state) {
-    this.state = state;
+  public BasicPresenter(AppMediator mediator) {
+    this.mediator = mediator;
+    state = mediator.basicState;
   }
+
+
+//  public BasicPresenter(BasicState state) {
+//    this.state = state;
+//  }
 
 
   protected void updateDisplay() {
@@ -34,7 +42,8 @@ public class BasicPresenter
   public void start() {
     model.reset();
 
-    CalculatorState calcState = router.getStateFromStandardScreen();
+    //CalculatorState calcState = router.getStateFromStandardScreen();
+    CalculatorState calcState = getStateFromStandardScreen();
     if(calcState != null) {
 
       model.setCommandList(calcState.commandList);
@@ -60,7 +69,15 @@ public class BasicPresenter
   }
 
 
+  private void passStateToStandardScreen(CalculatorState state) {
+    mediator.calculatorState = state;
+  }
 
+  private CalculatorState getStateFromStandardScreen() {
+    CalculatorState state = mediator.calculatorState;
+    mediator.calculatorState = null;
+    return state;
+  }
 
   @Override
   public void configChanged() {
@@ -74,8 +91,10 @@ public class BasicPresenter
     calcState.display = state.display;
     calcState.backspaceEnabled = state.backspaceEnabled;
 
-    router.passStateToStandardScreen(calcState);
-    router.navigateToStandardScreen();
+//    router.passStateToStandardScreen(calcState);
+//    router.navigateToStandardScreen();
+    passStateToStandardScreen(calcState);
+    view.get().navigateToStandardScreen();
     view.get().finishStandardScreen();
 
   }
@@ -159,10 +178,10 @@ public class BasicPresenter
   }
 
 
-  @Override
-  public void injectRouter(BasicContract.Router router) {
-    this.router = router;
-  }
+//  @Override
+//  public void injectRouter(BasicContract.Router router) {
+//    this.router = router;
+//  }
 
 
 }

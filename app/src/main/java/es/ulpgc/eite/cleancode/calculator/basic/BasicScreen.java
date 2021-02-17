@@ -15,14 +15,16 @@ public class BasicScreen {
     WeakReference<FragmentActivity> context =
         new WeakReference<>((FragmentActivity) view);
 
-    AppMediator mediator = (AppMediator) context.get().getApplication();
-    BasicState state = mediator.basicState;
+    //AppMediator mediator = (AppMediator) context.get().getApplication();
+    AppMediator mediator = AppMediator.getInstance();
+    //BasicState state = mediator.basicState;
 
-    BasicContract.Router router = new BasicRouter(mediator);
-    BasicContract.Presenter presenter = new BasicPresenter(state);
+    //BasicContract.Router router = new BasicRouter(mediator);
+    //BasicContract.Presenter presenter = new BasicPresenter(state);
+    BasicContract.Presenter presenter = new BasicPresenter(mediator);
     BrainContract.Model model = new BrainModel();
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     view.injectPresenter(presenter);

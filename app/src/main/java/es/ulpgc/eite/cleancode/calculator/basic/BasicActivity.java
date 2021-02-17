@@ -1,5 +1,6 @@
 package es.ulpgc.eite.cleancode.calculator.basic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.ulpgc.eite.cleancode.calculator.R;
+import es.ulpgc.eite.cleancode.calculator.standard.StandardActivity;
 
 public class BasicActivity extends AppCompatActivity
     implements BasicContract.View, View.OnClickListener {
@@ -43,6 +45,12 @@ public class BasicActivity extends AppCompatActivity
     findViewById(R.id.buttonMinus).setOnClickListener(this);
     findViewById(R.id.buttonPlus).setOnClickListener(this);
 
+    /*
+    if(savedInstanceState == null){
+      AppMediator.resetInstance();
+    }
+    */
+
     // do the setup
     BasicScreen.configure(this);
 
@@ -69,6 +77,12 @@ public class BasicActivity extends AppCompatActivity
     presenter.stop();
   }
 
+
+  @Override
+  public void navigateToStandardScreen() {
+    Intent intent = new Intent(this, StandardActivity.class);
+    startActivity(intent);
+  }
 
   @Override
   public void onClick(View view) {

@@ -5,10 +5,9 @@ import org.junit.Test;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.calculator.app.AppMediator;
 import es.ulpgc.eite.cleancode.calculator.basic.BasicContract;
 import es.ulpgc.eite.cleancode.calculator.basic.BasicPresenter;
-import es.ulpgc.eite.cleancode.calculator.basic.BasicState;
-import es.ulpgc.eite.cleancode.calculator.basic.mocks.MockBasicRouter;
 import es.ulpgc.eite.cleancode.calculator.basic.mocks.MockBasicActivity;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainModel;
@@ -21,14 +20,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayFromPresenter() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -45,14 +46,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayFromView() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -72,14 +75,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayNumberClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -99,14 +104,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayDelClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -126,14 +133,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayClrClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -153,14 +162,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayAddClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -180,14 +191,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayAddAndNumberClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -208,14 +221,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayAddAndEqualClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -237,14 +252,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayAddAndSubtractClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -266,14 +283,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayAddAndSubtractAndNumberClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When
@@ -296,14 +315,16 @@ public class BasicPresenterUnitTests {
   public void testDisplayAddAndSubtractAndEqualClicked() {
 
     // Given
-    BasicState state = new BasicState();
-    BasicPresenter presenter = new BasicPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    BasicPresenter presenter = new BasicPresenter(mediator);
+    //BasicState state = new BasicState();
+    //BasicPresenter presenter = new BasicPresenter(state);
     BrainContract.Model model = new BrainModel();
-    MockBasicRouter router = new MockBasicRouter();
+    //MockBasicRouter router = new MockBasicRouter();
     MockBasicActivity activity = new MockBasicActivity();
     BasicContract.View view = activity;
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));
 
     // When

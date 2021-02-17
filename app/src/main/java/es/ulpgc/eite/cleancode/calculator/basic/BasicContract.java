@@ -2,7 +2,6 @@ package es.ulpgc.eite.cleancode.calculator.basic;
 
 import java.lang.ref.WeakReference;
 
-import es.ulpgc.eite.cleancode.calculator.app.CalculatorState;
 import es.ulpgc.eite.cleancode.calculator.brain.BrainContract;
 
 public interface BasicContract {
@@ -10,6 +9,8 @@ public interface BasicContract {
 
   interface View {
     void injectPresenter(Presenter presenter);
+
+    void navigateToStandardScreen();
 
     void display(String text);
     void displayWarning(String text);
@@ -20,7 +21,7 @@ public interface BasicContract {
   interface Presenter {
     void injectView(WeakReference<View> view);
     void injectModel(BrainContract.Model model);
-    void injectRouter(Router router);
+    //void injectRouter(Router router);
 
     void start();
     void configChanged();
@@ -28,10 +29,10 @@ public interface BasicContract {
     void stop();
   }
 
-  interface Router {
-    void navigateToStandardScreen();
-    void passStateToStandardScreen(CalculatorState state);
-    CalculatorState getStateFromStandardScreen();
-
-  }
+//  interface Router {
+//    void navigateToStandardScreen();
+//    void passStateToStandardScreen(CalculatorState state);
+//    CalculatorState getStateFromStandardScreen();
+//
+//  }
 }
